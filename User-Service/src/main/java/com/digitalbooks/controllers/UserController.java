@@ -22,11 +22,10 @@ import com.digitalbooks.utils.ValidationUtils;
 @RestController
 @RequestMapping("/digitalbooks")
 public class UserController {
-	
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	ValidationUtils validationUtils;
 
@@ -40,9 +39,8 @@ public class UserController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) throws UserServiceException {
 		validationUtils.validateRequest(signUpRequest);
-		MessageResponse messageResponse= userService.registerUser(signUpRequest);
+		MessageResponse messageResponse = userService.registerUser(signUpRequest);
 		return ResponseEntity.ok(messageResponse);
 	}
 
- 
 }

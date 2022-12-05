@@ -16,43 +16,45 @@ import com.digitalbooks.exception.UserServiceException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	@ResponseStatus(HttpStatus.BAD_REQUEST) 
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(Exception.class)
-	public String handleException(Exception exception) {
+	public Map<String, String> handleException(Exception exception) {
 		System.out.println("Exception");
-		return "error";
+		Map<String, String> errorsMap = new HashMap<>();
+		errorsMap.put("Exception", exception.getMessage());
+		return errorsMap;
 	}
-	
-	@ResponseStatus(HttpStatus.BAD_REQUEST) 
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
 		List<ObjectError> errors = exception.getBindingResult().getAllErrors();
 		System.out.println("bad request");
 		Map<String, String> errorsMap = new HashMap<>();
-		 ListIterator<ObjectError> iterator = errors.listIterator();
-		while(iterator.hasNext()) {
+		ListIterator<ObjectError> iterator = errors.listIterator();
+		while (iterator.hasNext()) {
 			ObjectError error = iterator.next();
 			errorsMap.put(error.getCode(), error.getDefaultMessage());
 		}
 		return errorsMap;
 	}
-	
-	@ResponseStatus(HttpStatus.BAD_REQUEST) 
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(UserServiceException.class)
 	public Map<String, String> handleUserServiceException(UserServiceException exception) {
 		System.out.println("bad request");
 		Map<String, String> errorsMap = new HashMap<>();
-			errorsMap.put("errorMessage", exception.getMessage());
-		
+		errorsMap.put("errorMessage", exception.getMessage());
 		return errorsMap;
 	}
-	
-	@ResponseStatus(HttpStatus.BAD_REQUEST) 
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(IllegalArgumentException.class)
-	public String handleIllegalArgumentException(IllegalArgumentException illegalArgumentException) {
+	public Map<String, String> handleIllegalArgumentException(IllegalArgumentException illegalArgumentException) {
 		System.out.println("IllegalArgumentException");
-		return "error";
+		Map<String, String> errorsMap = new HashMap<>();
+		errorsMap.put("errorMessage", illegalArgumentException.getMessage());
+		return errorsMap;
 	}
-	
-	
+
 }
