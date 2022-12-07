@@ -1,7 +1,6 @@
 package com.digitalbooks.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -23,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.digitalbooks.exception.BookServiceException;
 import com.digitalbooks.model.Book;
 import com.digitalbooks.request.CreateBookRequest;
+import com.digitalbooks.response.BookServiceResponse;
 import com.digitalbooks.service.BookService;
 import com.digitalbooks.utils.ValidationUtils;
 
@@ -49,9 +49,8 @@ public class BookControler {
 	}
 
 	@GetMapping(value = "/search")
-	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter) throws BookServiceException {
-		validationUtils.validatesearchRequest(allFilter);
-		List<Book> bookList = bookService.searchBook(allFilter);
-		return ResponseEntity.ok(bookList);
+	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter) {
+		BookServiceResponse bookServiceResponse = bookService.searchBook(allFilter);
+		return ResponseEntity.ok(bookServiceResponse);
 	}
 }

@@ -1,5 +1,6 @@
 package com.digitalbooks.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import com.digitalbooks.exception.BookServiceException;
 import com.digitalbooks.model.Book;
 import com.digitalbooks.repository.BookRepository;
 import com.digitalbooks.request.CreateBookRequest;
+import com.digitalbooks.response.BookServiceResponse;
 
 @Component
 public class ValidationUtils {
@@ -27,23 +29,31 @@ public class ValidationUtils {
 		}
 	}
 
-	public void validatesearchRequest(Map<String, String> allFilter) throws BookServiceException {
-		List<String> reqParamList=List.of("category","title","authorId","price","publisher");
-		if(allFilter.isEmpty())
-		{
-			throw new BookServiceException("Need at least 1 Filter(like-category/title/authorId/price/publisher");
-		}else{
-			for(Map.Entry<String,String> param : allFilter.entrySet()){
-				if(!reqParamList.contains(param.getKey())) {
-					throw new BookServiceException("Invalid Parameter");
-				}else {
-					if(StringUtils.isEmpty(param.getValue()))
-						throw new BookServiceException("Parameter('"+param.getKey()+"') Should Not be blank");	
-					 	
+	public boolean validatesearchRequest(Map<String, String> allFilter, BookServiceResponse bookServiceResponse) {
+		List<String> reqParamList = List.of("category", "title", "authorId", "price", "publisher");
+		if (allFilter.isEmpty()) {
+			bookServiceResponse.setStatus("Failure");
+			bookServiceResponse.setMessage("Need at least 1 Filter(like-category/title/authorId/price/publisher");
+			bookServiceResponse.setBookList(new ArrayList<Book>());
+			return false;
+		} else {
+			for (Map.Entry<String, String> param : allFilter.entrySet()) {
+				if (!reqParamList.contains(param.getKey())) {
+					bookServiceResponse.setStatus("Failure");
+					bookServiceResponse.setMessage("Invalid Parameter");
+					bookServiceResponse.setBookList(new ArrayList<Book>());
+					return false;
+				} else if (StringUtils.isEmpty(param.getValue())) {
+					bookServiceResponse.setStatus("Failure");
+					bookServiceResponse.setMessage("Parameter('"+param.getKey()+"') Should Not be blank");
+					bookServiceResponse.setBookList(new ArrayList<Book>());
+					return false;
+
 				}
 			}
 		}
-		
+		return true;
+
 	}
 
 }
