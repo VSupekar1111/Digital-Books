@@ -1,4 +1,4 @@
-package com.digitalbooks.response;
+package com.digitalbooks.payload.response;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -101,4 +101,12 @@ public class Book {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", category=" + category + ", price=" + price + ", publisher="
+				+ publisher + ", publishDate=" + publishDate + ", content=" + content + ", logo=" + logo + ", authorId="
+				+ authorId + ", active=" + active + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+	}
+
+	
 }

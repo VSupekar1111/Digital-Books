@@ -1,47 +1,25 @@
 package com.digitalbooks.request;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.web.multipart.MultipartFile;
-
 public class CreateBookRequest {
-
 	
-	File logo;
 
-	@NotBlank(message = "'title' must not be BLANK")
+	String logo;
+
 	String title;
 
-	@NotBlank(message = "'category' must not be BLANK")
 	String category;
 
-	@NotBlank(message = "'price' must not be BLANK")
 	String price;
 
-	@NotBlank(message = "'author' must not be BLANK")
 	String author;
 
-	@NotBlank(message = "'publisher' must not be BLANK")
 	String publisher;
 
-	@NotBlank(message = "'publishDate' must not be BLANK")
 	String publishDate;
 
-	@NotBlank(message = "'content' must not be BLANK")
 	String content;
 
 	boolean active;
-
-	public File getLogo() {
-		return logo;
-	}
-
-	public void setLogo(MultipartFile logo2) throws IllegalStateException, IOException {
-		this.logo =multipartToFile(logo2,"logo");
-	}
 
 	public String getTitle() {
 		return title;
@@ -107,9 +85,19 @@ public class CreateBookRequest {
 		this.active = active;
 	}
 
-	public  static File multipartToFile(MultipartFile multipart, String fileName) throws IllegalStateException, IOException {
-	    File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileName);
-	    multipart.transferTo(convFile);
-	    return convFile;
+	public String getLogo() {
+		return logo;
 	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	
+	
+
+//	public  static File multipartToFile(MultipartFile multipart, String fileName) throws IllegalStateException, IOException {
+//	    File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileName);
+//	    multipart.transferTo(convFile);
+//	    return convFile;
+//	}
 }

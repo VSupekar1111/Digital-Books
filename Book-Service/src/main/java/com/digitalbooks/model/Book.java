@@ -1,6 +1,5 @@
 package com.digitalbooks.model;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -13,13 +12,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(	schema ="bookDB", name = "Book")
+@Table(schema = "bookDB", name = "Book")
 public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	String title;
 
 	String category;
@@ -31,15 +30,15 @@ public class Book {
 	LocalDate publishDate;
 
 	String content;
-	
-	File logo;
-	
+
+	String logo;
+
 	Long authorId;
 
 	boolean active;
-	
+
 	LocalDate createDate;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	Date updateDate;
 
@@ -91,11 +90,11 @@ public class Book {
 		this.content = content;
 	}
 
-	public File getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 
-	public void setLogo(File logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
@@ -122,6 +121,12 @@ public class Book {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", category=" + category + ", price=" + price + ", publisher="
+				+ publisher + ", publishDate=" + publishDate + ", content=" + content + ", logo=" + logo + ", authorId="
+				+ authorId + ", active=" + active + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+	}
+ 
 }

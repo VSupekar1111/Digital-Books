@@ -26,23 +26,34 @@ public class BookServiceImpl implements BookService {
 	ValidationUtils validationUtils;
 
 	@Override
-	public Book createBook(CreateBookRequest createBookRequest, Long authorID) {
-		Book book = new Book();
-		book.setTitle(createBookRequest.getTitle());
-		book.setLogo(createBookRequest.getLogo());
-		book.setPrice(createBookRequest.getPrice());
-		book.setCategory(createBookRequest.getCategory());
-		book.setContent(createBookRequest.getContent());
-		book.setPublisher(createBookRequest.getPublisher());
-		book.setPublishDate(LocalDate.parse(createBookRequest.getPublishDate()));
-		book.setAuthorId(authorID);
-		book.setActive(createBookRequest.isActive());
-		return bookRepository.save(book);
+	public BookServiceResponse createBook(CreateBookRequest createBookRequest, Long authorID) {
+		System.out.println("Creating Book");
+		BookServiceResponse bookServiceResponse = new BookServiceResponse();
+		if (validationUtils.validateCreateBookRequest(createBookRequest, authorID, bookServiceResponse)) {
+			Book book = new Book();
+			book.setTitle(createBookRequest.getTitle());
+			book.setLogo(createBookRequest.getLogo());
+			book.setPrice(createBookRequest.getPrice());
+			book.setCategory(createBookRequest.getCategory());
+			book.setContent(createBookRequest.getContent());
+			book.setPublisher(createBookRequest.getPublisher());
+			book.setPublishDate(LocalDate.parse(createBookRequest.getPublishDate()));
+			book.setAuthorId(authorID);
+			book.setActive(createBookRequest.isActive());
+			Book bookResponse = bookRepository.save(book);
+			System.out.println("Book created : "+bookResponse);
+			bookServiceResponse.setStatus("Success");
+			bookServiceResponse.getBookList().add(bookResponse);
+			bookServiceResponse.setMessage("Book Created");
+			return bookServiceResponse;
+		}
+		return bookServiceResponse;
 	}
 
 	@Override
 	public BookServiceResponse searchBook(Map<String, String> allFilter) {
 		List<Book> listBook = new ArrayList<>();
+		System.out.println("Searching Book:");
 		BookServiceResponse bookServiceResponse = new BookServiceResponse();
 
 		if (validationUtils.validatesearchRequest(allFilter, bookServiceResponse)) {
@@ -73,8 +84,9 @@ public class BookServiceImpl implements BookService {
 				return true;
 			}).collect(Collectors.toList());
 			bookServiceResponse.setStatus("Success");
-			bookServiceResponse.setBookList(finalBookList);	
+			bookServiceResponse.setBookList(finalBookList);
 		}
+		System.out.println("Book Service Response :"+ bookServiceResponse);
 		return bookServiceResponse;
 	}
 

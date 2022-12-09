@@ -1,14 +1,16 @@
 package com.digitalbooks.payload.request;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CreateBookRequest {
 
+	String logo;
 	
-	File logo;
-
 	@NotBlank(message = "'title' must not be BLANK")
 	String title;
 
@@ -32,11 +34,11 @@ public class CreateBookRequest {
 
 	boolean active;
 
-	public File getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 
-	public void setLogo(File logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 
@@ -103,5 +105,11 @@ public class CreateBookRequest {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	public  static File multipartToFile(MultipartFile multipart, String fileName) throws IllegalStateException, IOException {
+    File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileName);
+    multipart.transferTo(convFile);
+    return convFile;
+}
 
 }

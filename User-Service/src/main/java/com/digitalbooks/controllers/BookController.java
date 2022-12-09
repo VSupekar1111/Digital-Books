@@ -37,10 +37,10 @@ public class BookController {
 
 	@PostMapping(value = "/author/{author-id}/books", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@PreAuthorize("hasRole('AUTHOR')")
-	public String createBook(@Valid @ModelAttribute CreateBookRequest createBookRequest,
-			@RequestParam("file") MultipartFile logo, @PathVariable("author-id") String authorID) {
-		// RestTemplate to call book service
-		return "Create Books(Author Role)";
+	public ResponseEntity<?> createBook(@Valid @ModelAttribute CreateBookRequest createBookRequest,
+			@RequestParam("file") MultipartFile file, @PathVariable("author-id") String authorID)
+			throws Exception {
+		return bookService.callCreateBookAPI(createBookRequest, authorID,file);
 	}
 
 }

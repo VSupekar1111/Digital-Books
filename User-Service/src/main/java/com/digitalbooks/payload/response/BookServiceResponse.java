@@ -1,4 +1,4 @@
-package com.digitalbooks.response;
+package com.digitalbooks.payload.response;
 
 import java.util.List;
 
@@ -29,6 +29,11 @@ public class BookServiceResponse {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "BookServiceResponse [status=" + status + ", bookList=" + bookList + ", message=" + message + "]";
 	}
 
 }
