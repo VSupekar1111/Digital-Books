@@ -1,0 +1,3436 @@
+{
+	"info": {
+		"_postman_id": "5922004c-9770-4807-b172-758e7af7053e",
+		"name": "Digital-Books",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"emai\":\"vsupekar11\",\r\n    \"role\":\"reader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/user-service/digitalbooks/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"user-service",
+						"digitalbooks",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "signup-empty-email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"\",\r\n    \"role\":\"reade\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Dec 2022 21:42:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"NotBlank\": \"'email' must not be BLANK\"\n}"
+				},
+				{
+					"name": "signup-invalid-email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11\",\r\n    \"role\":\"reade\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Dec 2022 21:43:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Email\": \"must be a well-formed email address\"\n}"
+				},
+				{
+					"name": "signup-invalid-role",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11@gmail.com\",\r\n    \"role\":\"reade\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Dec 2022 21:44:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Invalid Role\"\n}"
+				},
+				{
+					"name": "signup-duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11@gmail.com\",\r\n    \"role\":\"Author\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Dec 2022 21:49:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Error: Username is already taken!\"\n}"
+				},
+				{
+					"name": "signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass1\",\r\n    \"email\":\"vsupekar111@gmail.com\",\r\n    \"role\":\"Reader\",\r\n    \"password\":\"Vikas@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 06:03:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User registered successfully!\"\n}"
+				},
+				{
+					"name": "signup-Password-Length",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11@gmail.com\",\r\n    \"role\":\"Author\",\r\n    \"password\":\"Vikasddddd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 06:06:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Size\": \"'password' length shoulkd be greater than or equal to 8\"\n}"
+				},
+				{
+					"name": "signup-Strong Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11@gmail.com\",\r\n    \"role\":\"Author\",\r\n    \"password\":\"Vikasddddd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 06:23:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Need Strong Password(min length=8,atleast 1 special char,atleaset 1 upeer case etc.\"\n}"
+				},
+				{
+					"name": "signup-Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"email\":\"vsupekar11@gmail.com\",\r\n    \"role\":\"Author\",\r\n    \"password\":\"Vikas@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 06:25:58 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User registered successfully!\"\n}"
+				},
+				{
+					"name": "signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"nitas\",\r\n    \"email\":\"nita2704@gmail.com\",\r\n    \"role\":\"Reader\",\r\n    \"password\":\"Nita@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:36:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User registered successfully!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/digitalbooks/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"digitalbooks",
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "signin-success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 04 Dec 2022 21:50:40 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"username\": \"vikass\",\n    \"email\": \"vsupekar11@gmail.com\",\n    \"roles\": [\n        \"ROLE_AUTHOR\"\n    ],\n    \"tokenType\": \"Bearer\",\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAxOTA2MzgsImV4cCI6MTY3MDE5MTEzOH0.bFlLcLbMngRzO3iaCwJfDP9aDZlCjznOePyJ-VYsSO5SYi1iPQ1qTHvecN4t5GXZrFi-kPbUM8ZqZ8oaHCanoQ\"\n}"
+				},
+				{
+					"name": "signin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"vikass\",\r\n    \"password\":\"Vikas@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 07:21:04 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"username\": \"vikass\",\n    \"email\": \"vsupekar11@gmail.com\",\n    \"roles\": [\n        \"ROLE_AUTHOR\"\n    ],\n    \"tokenType\": \"Bearer\",\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMjQ4NjMsImV4cCI6MTY3MDIyNTM2M30.RW6HMSsbIknNEebVLg5Q8MkZMT_WItJdXlXbupdj4QSyE05mntUXSpFWWs3Sxi3_HsOpV7AjWrmV4W2DyJ--ow\"\n}"
+				},
+				{
+					"name": "signin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"username\" :\"nitas\",\r\n    \"password\":\"Nita@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:36:33 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"username\": \"nitas\",\n    \"email\": \"nita2704@gmail.com\",\n    \"roles\": [\n        \"ROLE_READER\"\n    ],\n    \"accessToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaXRhcyIsImlhdCI6MTY3MDY4Mjk5MywiZXhwIjoxNjcwNjgzNDkzfQ.XM-M0U_HNeE9kmH7Q42X7A2p_nHUZzEvr7Egy6lk1abEdqQ9u7abhEJBI79bPzxJWmEj_OGdK-Vml72B8CY43g\",\n    \"tokenType\": \"Bearer\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user-service-check-authunticate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": [
+				{
+					"name": "user-service-create-book",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/author/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"author",
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "21"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 07:24:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "Author or Reader Role"
+				}
+			]
+		},
+		{
+			"name": "user-service-create-book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMzAyMTYsImV4cCI6MTY3MDIzMDcxNn0.D3kLTBmX-cFKLPQAowoxjB1GlzmmKTUw1SqjXJko9xQleXnOsL53E8Hcj3Fa-rB3KU1uynlmj2Bkf2nf5Pj21A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Spiderman is back",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "publishDate",
+							"value": "22/04/2022 ",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "comic",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": " 24",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "vikas",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "Moon publisher",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "book text",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8090/digitalbooks/author/10/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"digitalbooks",
+						"author",
+						"10",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Spiderman is back",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/logo.png"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-04-22",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "comic",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 24",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Moon publisher",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/author/10/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"author",
+								"10",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 06:24:12 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 10,\n            \"title\": \"Spiderman is back\",\n            \"category\": \"comic\",\n            \"price\": \" 24\",\n            \"publisher\": \"Moon publisher\",\n            \"publishDate\": \"2022-04-22\",\n            \"content\": \"book text\",\n            \"authorId\": 10,\n            \"active\": false\n        }\n    ],\n    \"message\": \"Book Created\"\n}"
+				},
+				{
+					"name": "user-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Spiderman is back",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/logo.png"
+								},
+								{
+									"key": "publishDate",
+									"value": "202204-22",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "comic",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 24",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Moon publisher",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/author/10/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"author",
+								"10",
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 06:33:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Duplicate Book\"\n}"
+				},
+				{
+					"name": "user-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Spiderman is back",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/logo.png"
+								},
+								{
+									"key": "publishDate",
+									"value": "202204-22",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "comic",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 24",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Moon publisher",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/author/11/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"author",
+								"11",
+								"books"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 06:33:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Exception\": \"Backend Service Failure\"\n}"
+				},
+				{
+					"name": "user-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java Full Stack",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/logo.png"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-10",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programming Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 765",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Moon publisher",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Chapter 1\nHow to create and destroy objects\n1.1 Introduction\nJava programming language",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/author/10/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"author",
+								"10",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 11:13:31 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 1,\n            \"title\": \"Java Full Stack\",\n            \"category\": \"Programming Language\",\n            \"price\": \" 765\",\n            \"publisher\": \"Moon publisher\",\n            \"publishDate\": \"2022-12-10\",\n            \"content\": \"Chapter 1\\nHow to create and destroy objects\\n1.1 Introduction\\nJava programming language\",\n            \"authorId\": 10,\n            \"active\": true\n        }\n    ],\n    \"message\": \"Book Created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "book-service-create-book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMzAyMTYsImV4cCI6MTY3MDIzMDcxNn0.D3kLTBmX-cFKLPQAowoxjB1GlzmmKTUw1SqjXJko9xQleXnOsL53E8Hcj3Fa-rB3KU1uynlmj2Bkf2nf5Pj21A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Java -Spring Boot",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+						},
+						{
+							"key": "publishDate",
+							"value": "2022-12-05",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Programin Language",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": " 540",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "vikas",
+							"type": "text"
+						},
+						{
+							"key": "publisher",
+							"value": "Vision",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "book text...",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/digitalbooks/author/1/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"author",
+						"1",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "book-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java -Spring Boot",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 540",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Vision",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text...",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/1/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"1",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 11:27:11 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Java -Spring Boot\",\n    \"category\": \"Programin Language\",\n    \"price\": \" 540\",\n    \"publisher\": \"Vision\",\n    \"publishDate\": \"2022-12-05\",\n    \"content\": \"book text...\",\n    \"logo\": \"C:\\\\Users\\\\supek\\\\AppData\\\\Local\\\\Temp\\\\logo\",\n    \"authorId\": 1,\n    \"active\": false\n}"
+				},
+				{
+					"name": "book-service-create-book-active",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java -Spring Boot",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 540",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Vision",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text...",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/1/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"1",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Dec 2022 11:31:17 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"title\": \"Java -Spring Boot\",\n    \"category\": \"Programin Language\",\n    \"price\": \" 540\",\n    \"publisher\": \"Vision\",\n    \"publishDate\": \"2022-12-05\",\n    \"content\": \"book text...\",\n    \"logo\": \"C:\\\\Users\\\\supek\\\\AppData\\\\Local\\\\Temp\\\\logo\",\n    \"authorId\": 1,\n    \"active\": true\n}"
+				},
+				{
+					"name": "book-service-create-book-duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java -Spring Boot",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": " 540",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Vision",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text...",
+									"type": "text"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/1/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"1",
+								"books"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Dec 2022 09:25:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Duplicate Book\"\n}"
+				},
+				{
+					"name": "book-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java Full",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "750",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Vision",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text...",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/1/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"1",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Dec 2022 12:46:54 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"title\": \"Java Full\",\n    \"category\": \"Programin Language\",\n    \"price\": \"750\",\n    \"publisher\": \"Vision\",\n    \"publishDate\": \"2022-12-05\",\n    \"content\": \"book text...\",\n    \"logo\": \"C:\\\\Users\\\\supek\\\\AppData\\\\Local\\\\Temp\\\\logo\",\n    \"authorId\": 1,\n    \"active\": false\n}"
+				},
+				{
+					"name": "book-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Java Full",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/MscProject/ComplaintsMaster/Images/admin.jpg"
+								},
+								{
+									"key": "publishDate",
+									"value": "2022-12-05",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "750",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "vikas",
+									"type": "text"
+								},
+								{
+									"key": "publisher",
+									"value": "Vision",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "book text...",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/2/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"2",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Dec 2022 12:47:10 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 4,\n    \"title\": \"Java Full\",\n    \"category\": \"Programin Language\",\n    \"price\": \"750\",\n    \"publisher\": \"Vision\",\n    \"publishDate\": \"2022-12-05\",\n    \"content\": \"book text...\",\n    \"logo\": \"C:\\\\Users\\\\supek\\\\AppData\\\\Local\\\\Temp\\\\logo\",\n    \"authorId\": 2,\n    \"active\": false\n}"
+				},
+				{
+					"name": "book-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"pqr\",\r\n    \"publishDate\":\"2022-12-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/7/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"7",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 08 Dec 2022 18:47:20 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 9,\n            \"title\": \"pqr\",\n            \"category\": null,\n            \"price\": null,\n            \"publisher\": null,\n            \"publishDate\": \"2022-12-02\",\n            \"content\": null,\n            \"logo\": null,\n            \"authorId\": 7,\n            \"active\": false\n        }\n    ],\n    \"message\": \"Book Created\"\n}"
+				},
+				{
+					"name": "book-service-create-book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"pqr\",\r\n    \"publishDate\":\"2022-12-02\",\r\n    \"active\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/author/2/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"author",
+								"2",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 19:36:50 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 11,\n            \"title\": \"pqr\",\n            \"category\": null,\n            \"price\": null,\n            \"publisher\": null,\n            \"publishDate\": \"2022-12-02\",\n            \"content\": null,\n            \"logo\": null,\n            \"authorId\": 2,\n            \"active\": true\n        }\n    ],\n    \"message\": \"Book Created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user-service-search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMzAyMTYsImV4cCI6MTY3MDIzMDcxNn0.D3kLTBmX-cFKLPQAowoxjB1GlzmmKTUw1SqjXJko9xQleXnOsL53E8Hcj3Fa-rB3KU1uynlmj2Bkf2nf5Pj21A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/digitalbooks/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"digitalbooks",
+						"search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user-service-search",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"search"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Dec 2022 15:20:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Need at least 1 Filter(like-category/title/authorId/price/publisher\"\n}"
+				},
+				{
+					"name": "user-service-search-byAuthor",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/search?authorId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 07 Dec 2022 17:31:47 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 1,\n            \"title\": \"Java -Spring Boot\",\n            \"category\": \"Programin Language\",\n            \"price\": \" 540\",\n            \"publisher\": \"Vision\",\n            \"publishDate\": \"2022-12-05\",\n            \"content\": \"book text...\",\n            \"authorId\": 1,\n            \"active\": false\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Java Full\",\n            \"category\": \"Programin Language\",\n            \"price\": \"750\",\n            \"publisher\": \"Vision\",\n            \"publishDate\": \"2022-12-05\",\n            \"content\": \"book text...\",\n            \"authorId\": 1,\n            \"active\": false\n        }\n    ],\n    \"message\": null\n}"
+				},
+				{
+					"name": "user-service-search-byAll",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/search?authorId=1&category=Programin Language&title=Java Full",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorId",
+									"value": "1"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language"
+								},
+								{
+									"key": "title",
+									"value": "Java Full"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 07 Dec 2022 17:34:01 GMT"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 3,\n            \"title\": \"Java Full\",\n            \"category\": \"Programin Language\",\n            \"price\": \"750\",\n            \"publisher\": \"Vision\",\n            \"publishDate\": \"2022-12-05\",\n            \"content\": \"book text...\",\n            \"authorId\": 1,\n            \"active\": false\n        }\n    ],\n    \"message\": null\n}"
+				},
+				{
+					"name": "user-service-search",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/search?authorId=1&category=Programin Language&title=",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorId",
+									"value": "1"
+								},
+								{
+									"key": "category",
+									"value": "Programin Language"
+								},
+								{
+									"key": "title",
+									"value": ""
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Dec 2022 17:41:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Parameter('title') Should Not be blank\"\n}"
+				},
+				{
+					"name": "user-service-search",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/search?authorId=1&categoryy=Programin Language&title=",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorId",
+									"value": "1"
+								},
+								{
+									"key": "categoryy",
+									"value": "Programin Language"
+								},
+								{
+									"key": "title",
+									"value": ""
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Dec 2022 17:45:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Invalid Parameter\"\n}"
+				}
+			]
+		},
+		{
+			"name": "book-service-subscribre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzA1Njc1ODcsImV4cCI6MTY3MDU2ODA4N30.2zjVoIH94EwIIG6OHi9UJb0o2sqPcc7u0_sSR4oLsy5oj4Rs4nfjrGQSKL2fHz2Kg1vpaTRqGaPYIj43NMugmQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\":1,\r\n    \"reader\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/digitalbooks/1/subscribe",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"1",
+						"subscribe"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":1,\r\n    \"reader\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/1/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"1",
+								"subscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 18:32:33 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponse\": {\n        \"id\": 1,\n        \"book\": {\n            \"id\": 1,\n            \"title\": \"Java -Spring Boot\",\n            \"category\": \"Programin Language\",\n            \"price\": \" 540\",\n            \"publisher\": \"Vision\",\n            \"publishDate\": \"2022-12-05\",\n            \"content\": \"book text...\",\n            \"logo\": \"\\ufffd\\ufffd\\u0000\\u0005sr\\u0000\\fjava.io.File\\u0004-\\ufffdE\\u000e\\r\\ufffd\\ufffd\\u0003\\u0000\\u0001L\\u0000\\u0004patht\\u0000\\u0012Ljava/lang/String;xpt\\u0000&C:\\\\Users\\\\supek\\\\AppData\\\\Local\\\\Temp\\\\logow\\u0002\\u0000\\\\x\",\n            \"authorId\": 1,\n            \"active\": false\n        },\n        \"userId\": 10,\n        \"subscribeDate\": \"2022-12-10T00:02:26.6880006\",\n        \"active\": true\n    },\n    \"message\": \"Book Subscribed Successfully\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":1,\r\n    \"reader\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/1/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"1",
+								"subscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 18:44:08 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Failure\",\n    \"bookSubscribeResponse\": null,\n    \"message\": \"Already Subscribed\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":1,\r\n    \"reader\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/5/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"5",
+								"subscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 09 Dec 2022 18:47:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponse\": {\n        \"id\": 2,\n        \"book\": {\n            \"id\": 5,\n            \"title\": \"abc\",\n            \"category\": null,\n            \"price\": null,\n            \"publisher\": null,\n            \"publishDate\": \"2022-12-02\",\n            \"content\": null,\n            \"logo\": null,\n            \"authorId\": 2,\n            \"active\": false\n        },\n        \"userId\": 10,\n        \"subscribeDate\": \"2022-12-10T00:17:13.128732\",\n        \"active\": true\n    },\n    \"message\": \"Book Subscribed Successfully\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":11,\r\n    \"reader\":12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/digitalbooks/2/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"2",
+								"subscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 11:16:23 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponseList\": [\n        {\n            \"subscribeId\": 1,\n            \"book\": {\n                \"id\": 2,\n                \"title\": \"Java Core\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 450\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": null,\n                \"logo\": \"logo.png\",\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 12,\n            \"subscribeDate\": \"2022-12-10T16:46:22.9866188\",\n            \"active\": true\n        }\n    ],\n    \"message\": \"Book Subscribed Successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "book-service-get-subscribed-books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMzAyMTYsImV4cCI6MTY3MDIzMDcxNn0.D3kLTBmX-cFKLPQAowoxjB1GlzmmKTUw1SqjXJko9xQleXnOsL53E8Hcj3Fa-rB3KU1uynlmj2Bkf2nf5Pj21A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/digitalbooks/readers/13/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"readers",
+						"13",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "book-service-get-subscribed-books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/digitalbooks/readers/13/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"readers",
+								"13",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 13:42:05 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponseList\": [\n        {\n            \"subscribeId\": 2,\n            \"book\": {\n                \"id\": 2,\n                \"title\": \"Java Core\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 450\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": \"\",\n                \"logo\": \"logo.png\",\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 13,\n            \"subscribeDate\": \"2022-12-10T17:16:37\",\n            \"active\": true\n        }\n    ],\n    \"message\": \"Subscribed book list\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Book-service-search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAzNTExNTUsImV4cCI6MTY3MDM1MTY1NX0.PC0YBjD9qMiOqIFp1_pIpAf4jtEJfS_x4NVirQkdPYAyz4KSt5Tu1H7M1eJG2GNp8tMoovwtt6BoAdKYWbEt2g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/digitalbooks/search?authorId=10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitalbooks",
+						"search"
+					],
+					"query": [
+						{
+							"key": "authorId",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Book-service-search",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/digitalbooks/search?authorId=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"digitalbooks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "authorId",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:02:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookList\": [\n        {\n            \"id\": 1,\n            \"title\": \"Java Full Stack\",\n            \"category\": \"Programming Language\",\n            \"price\": \" 765\",\n            \"publisher\": \"Moon publisher\",\n            \"publishDate\": \"2022-12-10\",\n            \"content\": \"\",\n            \"logo\": \"logo.png\",\n            \"authorId\": 10,\n            \"active\": true\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Java Core\",\n            \"category\": \"Programming Language\",\n            \"price\": \" 450\",\n            \"publisher\": \"Moon publisher\",\n            \"publishDate\": \"2022-12-10\",\n            \"content\": \"\",\n            \"logo\": \"logo.png\",\n            \"authorId\": 10,\n            \"active\": true\n        }\n    ],\n    \"message\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "user-service-subscribre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzA1Njc1ODcsImV4cCI6MTY3MDU2ODA4N30.2zjVoIH94EwIIG6OHi9UJb0o2sqPcc7u0_sSR4oLsy5oj4Rs4nfjrGQSKL2fHz2Kg1vpaTRqGaPYIj43NMugmQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\":11,\r\n    \"reader\":13\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/digitalbooks/2/subscribe",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"digitalbooks",
+						"2",
+						"subscribe"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":4,\r\n    \"reader\":13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/4/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"4",
+								"subscribe"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:42:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Book not Exist\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":3,\r\n    \"reader\":13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/3/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"3",
+								"subscribe"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:43:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Book Blocked by Author\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":2,\r\n    \"reader\":13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/2/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"2",
+								"subscribe"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:43:57 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errorMessage\": \"Already Subscribed\"\n}"
+				},
+				{
+					"name": "user-service-subscribre",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\":1,\r\n    \"reader\":13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/digitalbooks/1/subscribe",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"1",
+								"subscribe"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:44:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponseList\": [\n        {\n            \"subscribeId\": 3,\n            \"book\": {\n                \"id\": 1,\n                \"title\": \"Java Full Stack\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 765\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": null,\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 13,\n            \"subscribeDate\": \"2022-12-10T20:14:13.4020203\",\n            \"active\": true\n        }\n    ],\n    \"message\": \"Book Subscribed Successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "search-service-get-subscribed-books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2aWthc3MiLCJpYXQiOjE2NzAyMzAyMTYsImV4cCI6MTY3MDIzMDcxNn0.D3kLTBmX-cFKLPQAowoxjB1GlzmmKTUw1SqjXJko9xQleXnOsL53E8Hcj3Fa-rB3KU1uynlmj2Bkf2nf5Pj21A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/digitalbooks/readers/13/books",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"digitalbooks",
+						"readers",
+						"13",
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "search-service-get-subscribed-books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/readers/13/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"readers",
+								"13",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:49:40 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponseList\": [\n        {\n            \"subscribeId\": 2,\n            \"book\": {\n                \"id\": 2,\n                \"title\": \"Java Core\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 450\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": \"\",\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 13,\n            \"subscribeDate\": \"2022-12-10T17:16:37\",\n            \"active\": true\n        },\n        {\n            \"subscribeId\": 3,\n            \"book\": {\n                \"id\": 1,\n                \"title\": \"Java Full Stack\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 765\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": \"\",\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 13,\n            \"subscribeDate\": \"2022-12-10T20:14:13\",\n            \"active\": true\n        }\n    ],\n    \"message\": \"Subscribed book list\"\n}"
+				},
+				{
+					"name": "search-service-get-subscribed-books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/digitalbooks/readers/12/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"digitalbooks",
+								"readers",
+								"12",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 10 Dec 2022 14:50:58 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"bookSubscribeResponseList\": [\n        {\n            \"subscribeId\": 1,\n            \"book\": {\n                \"id\": 2,\n                \"title\": \"Java Core\",\n                \"category\": \"Programming Language\",\n                \"price\": \" 450\",\n                \"publisher\": \"Moon publisher\",\n                \"publishDate\": \"2022-12-10\",\n                \"content\": \"\",\n                \"authorId\": 10,\n                \"active\": true\n            },\n            \"userId\": 12,\n            \"subscribeDate\": \"2022-12-10T16:46:23\",\n            \"active\": true\n        }\n    ],\n    \"message\": \"Subscribed book list\"\n}"
+				}
+			]
+		}
+	]
+}
