@@ -12,22 +12,22 @@ import com.digitalbooks.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-	@Query("SELECT b FROM Book b WHERE b.title= :title AND b.authorId= :authorId")
-	List<Book> getBooksByAuthor(@Param("title") String title, @Param("authorId") Long authorID);
+	@Query("SELECT b.id FROM Book b WHERE b.title= :title AND b.authorId= :authorId")
+	List<Long> getBooksByAuthor(@Param("title") String title, @Param("authorId") Long authorID);
 
-	@Query("SELECT b FROM Book b WHERE b.category= :category")
-	List<Book> findByCategory(@Param("category") String category);
+	@Query("SELECT b FROM Book b WHERE b.category= :category AND b.active =:active")
+	List<Book> findByCategory(@Param("category") String category, @Param("active") boolean active);
 
-	@Query("SELECT b FROM Book b WHERE b.title= :title")
-	List<Book> findByTitle(@Param("title") String title);
+	@Query("SELECT b FROM Book b WHERE b.title= :title AND b.active =:active")
+	List<Book> findByTitle(@Param("title") String title, @Param("active") boolean active);
 
-	@Query("SELECT b FROM Book b WHERE b.authorId= :authorId")
-	List<Book> findByAuthorId(@Param("authorId") Long authorId);
+	@Query("SELECT b FROM Book b WHERE b.authorId= :authorId AND b.active =:active")
+	List<Book> findByAuthorId(@Param("authorId") Long authorId, @Param("active") boolean active);
 
-	@Query("SELECT b FROM Book b WHERE b.price= :price")
-	List<Book> findByPrice(@Param("price") String price);
+	@Query("SELECT b FROM Book b WHERE b.price= :price AND b.active =:active")
+	List<Book> findByPrice(@Param("price") String price, @Param("active") boolean active);
 
-	@Query("SELECT b FROM Book b WHERE b.publisher= :publisher")
-	List<Book> findByPublisher(@Param("publisher") String publisher);
+	@Query("SELECT b FROM Book b WHERE b.publisher= :publisher AND b.active =:active")
+	List<Book> findByPublisher(@Param("publisher") String publisher, @Param("active") boolean active);
 
 }

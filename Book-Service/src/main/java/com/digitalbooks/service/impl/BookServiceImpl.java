@@ -1,18 +1,24 @@
 package com.digitalbooks.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.digitalbooks.model.Book;
+import com.digitalbooks.model.BookSubscribe;
 import com.digitalbooks.repository.BookRepository;
+import com.digitalbooks.repository.BookSubscribeRepository;
 import com.digitalbooks.request.CreateBookRequest;
+import com.digitalbooks.request.SubscribeBookRequest;
 import com.digitalbooks.response.BookServiceResponse;
+import com.digitalbooks.response.BookSubscribeResponse;
 import com.digitalbooks.service.BookService;
 import com.digitalbooks.utils.ValidationUtils;
 
@@ -21,6 +27,9 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	BookRepository bookRepository;
+
+	@Autowired
+	BookSubscribeRepository bookSubscribeRepository;
 
 	@Autowired
 	ValidationUtils validationUtils;
@@ -41,7 +50,7 @@ public class BookServiceImpl implements BookService {
 			book.setAuthorId(authorID);
 			book.setActive(createBookRequest.isActive());
 			Book bookResponse = bookRepository.save(book);
-			System.out.println("Book created : "+bookResponse);
+			System.out.println("Book created : " + bookResponse);
 			bookServiceResponse.setStatus("Success");
 			bookServiceResponse.getBookList().add(bookResponse);
 			bookServiceResponse.setMessage("Book Created");
@@ -58,15 +67,15 @@ public class BookServiceImpl implements BookService {
 
 		if (validationUtils.validatesearchRequest(allFilter, bookServiceResponse)) {
 			if (allFilter.get("category") != null) {
-				listBook.addAll(bookRepository.findByCategory(allFilter.get("category")));
+				listBook.addAll(bookRepository.findByCategory(allFilter.get("category"), true));
 			} else if (allFilter.get("title") != null) {
-				listBook.addAll(bookRepository.findByTitle(allFilter.get("title")));
+				listBook.addAll(bookRepository.findByTitle(allFilter.get("title"), true));
 			} else if (allFilter.get("authorId") != null) {
-				listBook.addAll(bookRepository.findByAuthorId(Long.valueOf(allFilter.get("authorId"))));
+				listBook.addAll(bookRepository.findByAuthorId(Long.valueOf(allFilter.get("authorId")), true));
 			} else if (allFilter.get("price") != null) {
-				listBook.addAll(bookRepository.findByPrice(allFilter.get("price")));
+				listBook.addAll(bookRepository.findByPrice(allFilter.get("price"), true));
 			} else if (allFilter.get("publisher") != null) {
-				listBook.addAll(bookRepository.findByPublisher(allFilter.get("publisher")));
+				listBook.addAll(bookRepository.findByPublisher(allFilter.get("publisher"), true));
 			}
 
 			List<Book> finalBookList = listBook.stream().filter(book -> {
@@ -86,8 +95,30 @@ public class BookServiceImpl implements BookService {
 			bookServiceResponse.setStatus("Success");
 			bookServiceResponse.setBookList(finalBookList);
 		}
-		System.out.println("Book Service Response :"+ bookServiceResponse);
+		System.out.println("Book Service Response :" + bookServiceResponse);
 		return bookServiceResponse;
+	}
+
+	@Override
+	public BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId) {
+		System.out.println("Subscribing Book");
+		BookSubscribeResponse bookSubscribeResponse = new BookSubscribeResponse();
+		if (validationUtils.validateSubscribeBookRequest(subscribeBookRequest, bookId, bookSubscribeResponse)) {
+			Optional<Book> book = bookRepository.findById(bookId);
+			BookSubscribe bookSubscribe = new BookSubscribe();
+			bookSubscribe.setBook(book.get());
+			bookSubscribe.setUserId(subscribeBookRequest.getReader());
+			bookSubscribe.setSubscribeDate(LocalDateTime.now());
+			bookSubscribe.setActive(true);
+			BookSubscribe subscribeResponse = bookSubscribeRepository.save(bookSubscribe);
+			bookSubscribeResponse.setStatus("Success");
+			subscribeResponse.getBook().setContent(null);
+			bookSubscribeResponse.getBookSubscribeResponseList().add(subscribeResponse);
+			bookSubscribeResponse.setMessage("Book Subscribed Successfully");
+			System.out.println("Book Subscribe Response :" + bookSubscribeResponse);
+			return bookSubscribeResponse;
+		}
+		return bookSubscribeResponse;
 	}
 
 }

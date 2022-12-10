@@ -2,6 +2,7 @@ package com.digitalbooks.utils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,11 @@ import org.springframework.stereotype.Component;
 
 import com.digitalbooks.model.Book;
 import com.digitalbooks.repository.BookRepository;
+import com.digitalbooks.repository.BookSubscribeRepository;
 import com.digitalbooks.request.CreateBookRequest;
+import com.digitalbooks.request.SubscribeBookRequest;
 import com.digitalbooks.response.BookServiceResponse;
+import com.digitalbooks.response.BookSubscribeResponse;
 
 @Component
 public class ValidationUtils {
@@ -18,9 +22,12 @@ public class ValidationUtils {
 	@Autowired
 	BookRepository bookRepository;
 
+	@Autowired
+	BookSubscribeRepository bookSubscribeRepository;
+
 	public boolean validateCreateBookRequest(CreateBookRequest createBookRequest, Long authorID,
 			BookServiceResponse bookServiceResponse) {
-		List<Book> bookList = bookRepository.getBooksByAuthor(createBookRequest.getTitle(), authorID);
+		List<Long> bookList = bookRepository.getBooksByAuthor(createBookRequest.getTitle(), authorID);
 		System.out.println(bookList);
 		if (!bookList.isEmpty()) {
 			bookServiceResponse.setStatus("Failure");
@@ -52,6 +59,25 @@ public class ValidationUtils {
 		}
 		return true;
 
+	}
+
+	public boolean validateSubscribeBookRequest(SubscribeBookRequest subscribeBookRequest, Long bookId,
+			BookSubscribeResponse bookSubscribeResponse) {
+		Optional<Book> book = bookRepository.findById(bookId);
+		if (book.isEmpty()) {
+			bookSubscribeResponse.setStatus("Failure");
+			bookSubscribeResponse.setMessage("Book not Exist");
+			return false;
+		} else {
+			if (!bookSubscribeRepository
+					.findBySubscribedBookAndAuthor(book.get(), subscribeBookRequest.getReader(), true).isEmpty()) {
+				bookSubscribeResponse.setStatus("Failure");
+				bookSubscribeResponse.setMessage("Already Subscribed");
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 }

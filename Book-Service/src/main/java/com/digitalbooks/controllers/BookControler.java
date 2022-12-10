@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.digitalbooks.request.CreateBookRequest;
+import com.digitalbooks.request.SubscribeBookRequest;
 import com.digitalbooks.response.BookServiceResponse;
+import com.digitalbooks.response.BookSubscribeResponse;
 import com.digitalbooks.service.BookService;
 import com.digitalbooks.utils.ValidationUtils;
 
@@ -44,6 +46,18 @@ public class BookControler {
 	@GetMapping(value = "/search")
 	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter) {
 		BookServiceResponse bookServiceResponse = bookService.searchBook(allFilter);
+		return ResponseEntity.ok(bookServiceResponse);
+	}
+
+	@PostMapping(value = "/{book-id}/subscribe")
+	public ResponseEntity<?> subscribeBook(@RequestBody SubscribeBookRequest subscribeBookRequest,
+			@PathVariable("book-id") Long bookId) {
+		BookSubscribeResponse bookServiceResponse = null;
+		try {
+			bookServiceResponse = bookService.subscribeBook(subscribeBookRequest, bookId);
+		} catch (Exception e) {
+			System.out.println("Exception Occured: " + e.getMessage());
+		}
 		return ResponseEntity.ok(bookServiceResponse);
 	}
 }
