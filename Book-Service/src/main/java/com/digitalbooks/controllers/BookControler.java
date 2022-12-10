@@ -52,12 +52,23 @@ public class BookControler {
 	@PostMapping(value = "/{book-id}/subscribe")
 	public ResponseEntity<?> subscribeBook(@RequestBody SubscribeBookRequest subscribeBookRequest,
 			@PathVariable("book-id") Long bookId) {
-		BookSubscribeResponse bookServiceResponse = null;
+		BookSubscribeResponse bookSubscribeResponse = null;
 		try {
-			bookServiceResponse = bookService.subscribeBook(subscribeBookRequest, bookId);
+			bookSubscribeResponse = bookService.subscribeBook(subscribeBookRequest, bookId);
 		} catch (Exception e) {
 			System.out.println("Exception Occured: " + e.getMessage());
 		}
-		return ResponseEntity.ok(bookServiceResponse);
+		return ResponseEntity.ok(bookSubscribeResponse);
+	}
+	
+	@GetMapping(value = "/readers/{user-id}/books")
+	public ResponseEntity<?> getBooks(@PathVariable("user-id") Long userID) {
+		BookSubscribeResponse bookSubscribeResponse = null;
+		try { 
+			bookSubscribeResponse = bookService.getBooks(userID);
+		} catch (Exception e) {
+			System.out.println("Exception Occured: " + e.getMessage());
+		}
+		return ResponseEntity.ok(bookSubscribeResponse);
 	}
 }

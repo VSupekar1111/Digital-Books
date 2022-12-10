@@ -14,6 +14,10 @@ import com.digitalbooks.model.BookSubscribe;
 public interface BookSubscribeRepository extends JpaRepository<BookSubscribe, Long> {
 
 	@Query("SELECT b.id FROM BookSubscribe b WHERE b.book= :book AND b.userId= :reader AND b.isActive= :isActive")
-	List<Long> findBySubscribedBookAndAuthor(@Param("book")Book book,@Param("reader") Long reader,@Param("isActive") boolean iaActive);
+	List<Long> findBySubscribedBookAndReader(@Param("book")Book book,@Param("reader") Long reader,@Param("isActive") boolean iaActive);
+
+	@Query("SELECT bs FROM BookSubscribe bs WHERE bs.userId= :reader AND bs.isActive= :isActive")
+	List<BookSubscribe> findSubscribedBooksByReader(@Param("reader") Long reader,@Param("isActive") boolean iaActive);
+
 
 }

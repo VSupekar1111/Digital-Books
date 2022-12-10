@@ -3,7 +3,6 @@ package com.digitalbooks.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,24 +16,24 @@ public class BookSubscribe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	Long subscribeId;
+
+	@ManyToOne
 	@JoinColumn(name = "Book_id")
 	Book book;
-	
+
 	Long userId;
-	
+
 	LocalDateTime subscribeDate;
-	
+
 	boolean isActive;
 
-	public Long getId() {
-		return id;
+	public Long getSubscribeId() {
+		return subscribeId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setSubscribeId(Long subscribeId) {
+		this.subscribeId = subscribeId;
 	}
 
 	public Book getBook() {
@@ -68,6 +67,11 @@ public class BookSubscribe {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "BookSubscribe [subscribeId=" + subscribeId + ", book=" + book + ", userId=" + userId
+				+ ", subscribeDate=" + subscribeDate + ", isActive=" + isActive + "]";
+	}
+
 }

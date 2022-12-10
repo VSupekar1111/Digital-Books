@@ -68,9 +68,13 @@ public class ValidationUtils {
 			bookSubscribeResponse.setStatus("Failure");
 			bookSubscribeResponse.setMessage("Book not Exist");
 			return false;
-		} else {
+		} else if(!book.get().isActive()){
+			bookSubscribeResponse.setStatus("Failure");
+			bookSubscribeResponse.setMessage("Book Blocked by Author");
+			return false;
+		}else {
 			if (!bookSubscribeRepository
-					.findBySubscribedBookAndAuthor(book.get(), subscribeBookRequest.getReader(), true).isEmpty()) {
+					.findBySubscribedBookAndReader(book.get(), subscribeBookRequest.getReader(), true).isEmpty()) {
 				bookSubscribeResponse.setStatus("Failure");
 				bookSubscribeResponse.setMessage("Already Subscribed");
 				return false;

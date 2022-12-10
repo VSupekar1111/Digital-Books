@@ -15,4 +15,6 @@ public interface BookService {
 
 	BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId);
 
+	BookSubscribeResponse getBooks(Long userID);
+
 }

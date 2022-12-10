@@ -93,7 +93,10 @@ public class BookServiceImpl implements BookService {
 				return true;
 			}).collect(Collectors.toList());
 			bookServiceResponse.setStatus("Success");
-			bookServiceResponse.setBookList(finalBookList);
+			bookServiceResponse.setBookList(finalBookList.stream().map(book -> {
+				book.setContent("");
+				return book;
+			}).collect(Collectors.toList()));
 		}
 		System.out.println("Book Service Response :" + bookServiceResponse);
 		return bookServiceResponse;
@@ -119,6 +122,21 @@ public class BookServiceImpl implements BookService {
 			return bookSubscribeResponse;
 		}
 		return bookSubscribeResponse;
+	}
+
+	@Override
+	public BookSubscribeResponse getBooks(Long userID) {
+		System.out.println("Fetching Subscribeed books");
+		BookSubscribeResponse bookSubscribeResponse = new BookSubscribeResponse();
+		List<BookSubscribe> subscribeResponse = bookSubscribeRepository.findSubscribedBooksByReader(userID, true);
+		bookSubscribeResponse.setStatus("Success");
+		bookSubscribeResponse.setBookSubscribeResponseList((subscribeResponse.stream().map(subscribedbook -> {
+			subscribedbook.getBook().setContent(""); // Hiding book content
+			return subscribedbook;
+		}).collect(Collectors.toList())));
+		bookSubscribeResponse.setMessage("Subscribed book list");
+		return bookSubscribeResponse;
+
 	}
 
 }
