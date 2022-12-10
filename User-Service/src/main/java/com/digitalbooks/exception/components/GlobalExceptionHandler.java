@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.digitalbooks.exception.BackeEndServiceException;
 import com.digitalbooks.exception.BookServiceException;
 import com.digitalbooks.exception.UserServiceException;
 
@@ -20,6 +21,15 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Exception.class)
 	public Map<String, String> handleException(Exception exception) {
+		System.out.println("Exception");
+		Map<String, String> errorsMap = new HashMap<>();
+		errorsMap.put("Exception", exception.getMessage());
+		return errorsMap;
+	}
+
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler(BackeEndServiceException.class)
+	public Map<String, String> handleException(BackeEndServiceException exception) {
 		System.out.println("Exception");
 		Map<String, String> errorsMap = new HashMap<>();
 		errorsMap.put("Exception", exception.getMessage());
