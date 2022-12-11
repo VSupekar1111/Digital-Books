@@ -23,6 +23,7 @@ import com.digitalbooks.exception.BackeEndServiceException;
 import com.digitalbooks.exception.BookServiceException;
 import com.digitalbooks.payload.request.CreateBookRequest;
 import com.digitalbooks.payload.request.SubscribeBookRequest;
+import com.digitalbooks.payload.response.BookServiceResponse;
 import com.digitalbooks.payload.response.BookSubscribeResponse;
 import com.digitalbooks.service.BookService;
 
@@ -36,14 +37,16 @@ public class BookController {
 
 	@GetMapping("/search")
 	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter) throws BookServiceException, BackeEndServiceException {
-		return bookService.callSearchBookAPI(allFilter);
-	}
+		 BookServiceResponse bookServiceResponse=bookService.callSearchBookAPI(allFilter);
+		 return ResponseEntity.ok(bookServiceResponse);
+		 }
 
 	@PostMapping(value = "/author/{author-id}/books", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	@PreAuthorize("hasRole('AUTHOR')")
 	public ResponseEntity<?> createBook(@Valid @ModelAttribute CreateBookRequest createBookRequest,
 			@RequestParam("file") MultipartFile file, @PathVariable("author-id") String authorID) throws BackeEndServiceException, BookServiceException {
-		return bookService.callCreateBookAPI(createBookRequest, authorID, file);
+		 BookServiceResponse bookServiceResponse=bookService.callCreateBookAPI(createBookRequest, authorID, file);
+		 return ResponseEntity.ok(bookServiceResponse);
 	}
 
 	@PostMapping(value = "/{book-id}/subscribe")

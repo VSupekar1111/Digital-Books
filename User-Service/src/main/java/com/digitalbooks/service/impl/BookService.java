@@ -2,6 +2,7 @@ package com.digitalbooks.service.impl;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -20,20 +21,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.digitalbooks.exception.BackeEndServiceException;
 import com.digitalbooks.exception.BookServiceException;
+import com.digitalbooks.models.User;
 import com.digitalbooks.payload.request.CreateBookRequest;
 import com.digitalbooks.payload.request.SubscribeBookRequest;
 import com.digitalbooks.payload.response.BookServiceResponse;
 import com.digitalbooks.payload.response.BookSubscribeResponse;
+import com.digitalbooks.repository.UserRepository;
 
 @Service
 public class BookService implements com.digitalbooks.service.BookService {
 
 	@Autowired
 	RestTemplate restTemplate;
-	
+
+	@Autowired
+	UserRepository userRepository;
+
 	@Value("${book-service.host}")
 	String bookServiceHost;
-	
+
 	@Value("${book-service.httpSchema}")
 	String httpSchema;
 
@@ -42,25 +48,35 @@ public class BookService implements com.digitalbooks.service.BookService {
 
 	@Value("${book-service.create-book}")
 	String createBookAPI;
-	
+
 	@Value("${book-service.subscribe-book}")
 	String subscribeBookAPI;
-	
+
 	@Value("${book-service.get-subscribed-book}")
 	String getSubscribedBookAPI;
-	
 
 	@Override
-	public ResponseEntity<?> callSearchBookAPI(Map<String, String> allFilter) throws BookServiceException, BackeEndServiceException {
+	public BookServiceResponse callSearchBookAPI(Map<String, String> allFilter)
+			throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling Search Book API:");
 		boolean isFirstParam = true;
 		StringBuilder url = new StringBuilder(searchBookAPI);
 		for (Map.Entry<String, String> param : allFilter.entrySet()) {
-			if (isFirstParam)
-				url.append("?" + param.getKey() + "=" + param.getValue());
-			else
-				url.append("&" + param.getKey() + "=" + param.getValue());
-			isFirstParam = false;
+			if (param.getKey().equalsIgnoreCase("author")) {
+				Optional<User> user = userRepository.findByUsername(param.getValue());
+				Long value = user.get().getId() != null ? user.get().getId() : 0L;
+				if (isFirstParam)
+					url.append("?authorId=" + String.valueOf(value));
+				else
+					url.append("&authorId=" + String.valueOf(value));
+				isFirstParam = false;
+			} else {
+				if (isFirstParam)
+					url.append("?" + param.getKey() + "=" + param.getValue());
+				else
+					url.append("&" + param.getKey() + "=" + param.getValue());
+				isFirstParam = false;
+			}
 		}
 		System.out.println("Search Book API URL:" + url);
 		ResponseEntity<?> bookServicreResponseEntity = restTemplate.getForEntity(url.toString(),
@@ -71,20 +87,21 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookServiceResponse.getStatus() != null
 					&& bookServiceResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookServiceResponse.getMessage());
-		}else {
+		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
-		return bookServicreResponseEntity;
+		return bookServiceResponse;
 
 	}
 
 	@Override
-	public ResponseEntity<?> callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID,
+	public BookServiceResponse callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID,
 			MultipartFile file) throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling create Book API");
 		prepareRequest(createBookRequest, file);
 
-		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost).path(createBookAPI).buildAndExpand(authorID);
+		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
+				.path(createBookAPI).buildAndExpand(authorID);
 		System.out.println("Create Book API URL: " + uri);
 
 		HttpHeaders headers = new HttpHeaders();
@@ -99,10 +116,10 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookServiceResponse.getStatus() != null
 					&& bookServiceResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookServiceResponse.getMessage());
-		}else {
+		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
-		return bookServicreResponseEntity;
+		return bookServiceResponse;
 	}
 
 	private void prepareRequest(@Valid CreateBookRequest createBookRequest, MultipartFile file) {
@@ -110,37 +127,40 @@ public class BookService implements com.digitalbooks.service.BookService {
 	}
 
 	@Override
-	public BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId) throws BookServiceException,BackeEndServiceException {
+	public BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId)
+			throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling subscribe Book API");
-		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost).path(subscribeBookAPI).buildAndExpand(bookId);
+		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
+				.path(subscribeBookAPI).buildAndExpand(bookId);
 		System.out.println("Create Book API URL: " + uri);
-		
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<SubscribeBookRequest> entity = new HttpEntity<SubscribeBookRequest>(subscribeBookRequest, headers);
 
 		ResponseEntity<?> bookServicreResponseEntity = restTemplate.exchange(uri.toString(), HttpMethod.POST, entity,
 				BookSubscribeResponse.class);
-		
+
 		BookSubscribeResponse bookSubscribeResponse = (BookSubscribeResponse) bookServicreResponseEntity.getBody();
 
 		if (bookSubscribeResponse != null) {
 			if (bookSubscribeResponse.getStatus() != null
 					&& bookSubscribeResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookSubscribeResponse.getMessage());
-		}else {
+		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
-		
+
 		return bookSubscribeResponse;
 	}
 
 	@Override
 	public BookSubscribeResponse getBooks(Long userID) throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling subscribe Book API");
-		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost).path(getSubscribedBookAPI).buildAndExpand(userID);
+		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
+				.path(getSubscribedBookAPI).buildAndExpand(userID);
 		System.out.println("Create Book API URL: " + uri);
-		
+
 		ResponseEntity<?> bookServicreResponseEntity = restTemplate.getForEntity(uri.toString(),
 				BookSubscribeResponse.class);
 		BookSubscribeResponse bookSubscribeResponse = (BookSubscribeResponse) bookServicreResponseEntity.getBody();
@@ -149,7 +169,7 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookSubscribeResponse.getStatus() != null
 					&& bookSubscribeResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookSubscribeResponse.getMessage());
-		}else {
+		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
 		return bookSubscribeResponse;
