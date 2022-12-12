@@ -22,6 +22,8 @@ public class Book {
 	String logo;
 
 	Long authorId;
+	
+	String authorName;
 
 	boolean active;
 
@@ -29,6 +31,7 @@ public class Book {
 
 	Date updateDate;
 
+	
 	public String getTitle() {
 		return title;
 	}
@@ -101,12 +104,48 @@ public class Book {
 		this.id = id;
 	}
 
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", category=" + category + ", price=" + price + ", publisher="
 				+ publisher + ", publishDate=" + publishDate + ", content=" + content + ", logo=" + logo + ", authorId="
-				+ authorId + ", active=" + active + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+				+ authorId + ", authorName=" + authorName + ", active=" + active + ", createDate=" + createDate
+				+ ", updateDate=" + updateDate + "]";
 	}
+
+	
 
 	
 }

@@ -87,6 +87,13 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookServiceResponse.getStatus() != null
 					&& bookServiceResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookServiceResponse.getMessage());
+			if(!bookServiceResponse.getBookList().isEmpty()) {
+				bookServiceResponse.getBookList().stream().map(book->{
+					Optional<User> user =userRepository.findById(book.getAuthorId()); 
+					book.setAuthorName(user.get().getusername());
+					return book;
+				});
+			}
 		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
