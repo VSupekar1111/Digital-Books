@@ -10,6 +10,14 @@
    </div>
    </div>
    <div class="row" >
+    <div class="fields">
+       Category
+     </div>
+     <div class="fields">
+        <input [(ngModel)]= "search.category">
+     </div>
+     </div>
+   <div class="row" >
    <div class="fields">
       Author
     </div>
@@ -43,11 +51,30 @@
     role="alert"
     *ngIf="isSearchFailed"
   >
-    Login failed: {{ errorMessage }}
+   Failed: {{ errorMessage }}
   </div>
 
 </div>
-<div class="searchForm" *ngIf="isSuccessful">
-    {{content}}
+<div class="books" *ngIf="isSuccessful">
+  <div class="row"> 
+    <div class="card card-block"
+     *ngFor="let book of bookList">
+   
+     <div class="book">
+      <img src="{{path}}{{book.logo}}">
+     <h4 class="card-title">{{book.title}}</h4>
+   <p class="card-text"><b>Category </b>{{book.category}}</p>
+   <p class="card-text"><b>Author : </b>{{book.author}}</p>
+   <p class="card-text"><b>Price: </b>{{book.price}}</p>
+   <p class="card-text">{{book.author}}</p>
+     </div>
+     <button *ngIf="showReaderBoard" class="btn btn-primary btn-block">
+      Subscribe
+    </button>
+    <button *ngIf="showAuthorBoard" class="btn btn-primary btn-block">
+      Blocks
+    </button>
+    </div>
+    </div>
 </div>
 

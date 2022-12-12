@@ -31,6 +31,7 @@ export class UserService {
 
   getBooks(search :any): Observable<any> {
     console.log(search);
+    this.pathvariable="";
     if(search.category !="")
     {
       if(this.isfirstPathVariable)

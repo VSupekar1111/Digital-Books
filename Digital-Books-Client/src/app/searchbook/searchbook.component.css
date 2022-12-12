@@ -8,17 +8,32 @@
    text-align: center;
    }
 
+   .books{
+    margin: auto;
+    width: 1000px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgba(231, 226, 236, 0.555);
+    text-align: center;
+    }
+
    .row{
     padding-top: 5px; 
     padding-left: 15px;
-    width: 550px;
     margin: auto;
    }
 
-.fields{
+   .fields{
+    display: inline-block;
+    width: 240px; 
+    height: 50px;
+    padding-top: 0px;
+  
+  }
+
+.book{
   display: inline-block;
   width: 240px; 
-  height: 50px;
-  padding-top: 0px;
-
+  padding-left: 10px;
+  padding-top:20px
 }
