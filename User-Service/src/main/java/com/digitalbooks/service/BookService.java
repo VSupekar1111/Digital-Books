@@ -17,10 +17,10 @@ public interface BookService {
 
 	BookServiceResponse callSearchBookAPI(Map<String, String> allFilter) throws BookServiceException, BackeEndServiceException;
 
-	BookServiceResponse callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID, MultipartFile file)
+	String callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID, MultipartFile file)
 			throws BookServiceException, BackeEndServiceException;
 
-	BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId) throws BookServiceException, BackeEndServiceException;
+	String subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId) throws BookServiceException, BackeEndServiceException;
 
 	BookSubscribeResponse getBooks(Long userID) throws BookServiceException, BackeEndServiceException;
 

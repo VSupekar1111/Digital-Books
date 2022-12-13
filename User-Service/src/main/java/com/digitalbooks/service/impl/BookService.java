@@ -1,8 +1,10 @@
 package com.digitalbooks.service.impl;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -24,7 +26,9 @@ import com.digitalbooks.exception.BookServiceException;
 import com.digitalbooks.models.User;
 import com.digitalbooks.payload.request.CreateBookRequest;
 import com.digitalbooks.payload.request.SubscribeBookRequest;
+import com.digitalbooks.payload.response.Book;
 import com.digitalbooks.payload.response.BookServiceResponse;
+import com.digitalbooks.payload.response.BookSubscribe;
 import com.digitalbooks.payload.response.BookSubscribeResponse;
 import com.digitalbooks.repository.UserRepository;
 
@@ -87,22 +91,26 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookServiceResponse.getStatus() != null
 					&& bookServiceResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookServiceResponse.getMessage());
-			if(!bookServiceResponse.getBookList().isEmpty()) {
-				bookServiceResponse.getBookList().stream().map(book->{
-					Optional<User> user =userRepository.findById(book.getAuthorId()); 
-					book.setAuthorName(user.get().getusername());
+
+			else if (!bookServiceResponse.getBookList().isEmpty()) {
+				List<Book> bookList = bookServiceResponse.getBookList().stream().map(book -> {
+					Optional<User> user = userRepository.findById(book.getAuthorId());
+					if (!user.isEmpty())
+						book.setAuthorName(user.get().getusername());
 					return book;
-				});
+				}).collect(Collectors.toList());
+				bookServiceResponse.setBookList(bookList);
 			}
 		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
+		System.out.println("Book Service Response:" + bookServiceResponse);
 		return bookServiceResponse;
 
 	}
 
 	@Override
-	public BookServiceResponse callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID,
+	public String callCreateBookAPI(@Valid CreateBookRequest createBookRequest, String authorID,
 			MultipartFile file) throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling create Book API");
 		prepareRequest(createBookRequest, file);
@@ -126,7 +134,7 @@ public class BookService implements com.digitalbooks.service.BookService {
 		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
-		return bookServiceResponse;
+		return bookServiceResponse.getMessage();
 	}
 
 	private void prepareRequest(@Valid CreateBookRequest createBookRequest, MultipartFile file) {
@@ -134,7 +142,7 @@ public class BookService implements com.digitalbooks.service.BookService {
 	}
 
 	@Override
-	public BookSubscribeResponse subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId)
+	public String subscribeBook(SubscribeBookRequest subscribeBookRequest, Long bookId)
 			throws BookServiceException, BackeEndServiceException {
 		System.out.println("Calling subscribe Book API");
 		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
@@ -158,15 +166,15 @@ public class BookService implements com.digitalbooks.service.BookService {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
 
-		return bookSubscribeResponse;
+		return bookSubscribeResponse.getMessage();
 	}
 
 	@Override
 	public BookSubscribeResponse getBooks(Long userID) throws BookServiceException, BackeEndServiceException {
-		System.out.println("Calling subscribe Book API");
+		System.out.println("Calling get Subscribed Book API");
 		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
 				.path(getSubscribedBookAPI).buildAndExpand(userID);
-		System.out.println("Create Book API URL: " + uri);
+		System.out.println("Subscribed Book API URL: " + uri);
 
 		ResponseEntity<?> bookServicreResponseEntity = restTemplate.getForEntity(uri.toString(),
 				BookSubscribeResponse.class);
@@ -176,6 +184,16 @@ public class BookService implements com.digitalbooks.service.BookService {
 			if (bookSubscribeResponse.getStatus() != null
 					&& bookSubscribeResponse.getStatus().toLowerCase().equals("failure"))
 				throw new BookServiceException(bookSubscribeResponse.getMessage());
+			else if (bookSubscribeResponse.getBookSubscribeResponseList().size() > 0) {
+				List<BookSubscribe> bookSubscribeResponseList = bookSubscribeResponse.getBookSubscribeResponseList()
+						.stream().map(subscribedbook -> {
+							Optional<User> user = userRepository.findById(subscribedbook.getBook().getAuthorId());
+							if (!user.isEmpty())
+								subscribedbook.getBook().setAuthorName(user.get().getusername());
+							return subscribedbook;
+						}).collect(Collectors.toList());
+				bookSubscribeResponse.setBookSubscribeResponseList(bookSubscribeResponseList);
+			}
 		} else {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}

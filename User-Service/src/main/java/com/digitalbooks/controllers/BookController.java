@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -45,16 +46,16 @@ public class BookController {
 	@PreAuthorize("hasRole('AUTHOR')")
 	public ResponseEntity<?> createBook(@Valid @ModelAttribute CreateBookRequest createBookRequest,
 			@RequestParam("file") MultipartFile file, @PathVariable("author-id") String authorID) throws BackeEndServiceException, BookServiceException {
-		 BookServiceResponse bookServiceResponse=bookService.callCreateBookAPI(createBookRequest, authorID, file);
-		 return ResponseEntity.ok(bookServiceResponse);
+		 String response=bookService.callCreateBookAPI(createBookRequest, authorID, file);
+		 return new ResponseEntity<>(response,HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "/{book-id}/subscribe")
 	@PreAuthorize("hasRole('READER')")
 	public ResponseEntity<?> subscribeBook(@RequestBody SubscribeBookRequest subscribeBookRequest,
 			@PathVariable("book-id") Long bookId) throws BookServiceException, BackeEndServiceException {
-		BookSubscribeResponse bookSubscribeResponse = bookService.subscribeBook(subscribeBookRequest, bookId);
-		return ResponseEntity.ok(bookSubscribeResponse);
+		String response = bookService.subscribeBook(subscribeBookRequest, bookId);
+		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping(value = "/readers/{user-id}/books")

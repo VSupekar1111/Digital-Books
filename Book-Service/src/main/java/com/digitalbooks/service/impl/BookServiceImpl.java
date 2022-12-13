@@ -52,8 +52,7 @@ public class BookServiceImpl implements BookService {
 			Book bookResponse = bookRepository.save(book);
 			System.out.println("Book created : " + bookResponse);
 			bookServiceResponse.setStatus("Success");
-			bookServiceResponse.getBookList().add(bookResponse);
-			bookServiceResponse.setMessage("Book Created");
+			bookServiceResponse.setMessage("id:"+bookResponse.getId());
 			return bookServiceResponse;
 		}
 		return bookServiceResponse;
@@ -115,9 +114,7 @@ public class BookServiceImpl implements BookService {
 			bookSubscribe.setActive(true);
 			BookSubscribe subscribeResponse = bookSubscribeRepository.save(bookSubscribe);
 			bookSubscribeResponse.setStatus("Success");
-			subscribeResponse.getBook().setContent(null);
-			bookSubscribeResponse.getBookSubscribeResponseList().add(subscribeResponse);
-			bookSubscribeResponse.setMessage("Book Subscribed Successfully");
+			bookSubscribeResponse.setMessage("SubscribedId:"+subscribeResponse.getSubscribeId());
 			System.out.println("Book Subscribe Response :" + bookSubscribeResponse);
 			return bookSubscribeResponse;
 		}
