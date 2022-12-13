@@ -1,0 +1,23 @@
+
+<div class="books" *ngIf="!isSearchSubscribedFailed">
+    <h2 class="hedding">Subscribed Books</h2>
+    <div class="row"> 
+      <div class="card card-block"
+       *ngFor="let subscribedbook of subscribedBookList">
+     
+       <div class="book">
+        <img src="{{subscribedbook.book.logo}}">
+       <h4 class="card-title">{{subscribedbook.book.title}}</h4>
+     <p class="card-text"><b>Category </b>{{subscribedbook.book.category}}</p>
+     <p class="card-text"><b>Author : </b>{{subscribedbook.book.authorName}}</p>
+     <p class="card-text"><b>Price: </b>{{subscribedbook.book.price}}</p> 
+     <div > <button  class="btn btn-primary btn-block" (click)="unsubscribe(subscribedbook.book.id)">
+      UnSubscribe
+    </button></div>
+   
+     <div
+      class="error"
+      role="alert"
+      *ngIf="subscribedbook.book.id==unsubscribedid &&  isUnSubscribedFailed" >
+     Failed : {{ errorMessage }}
+    </div>

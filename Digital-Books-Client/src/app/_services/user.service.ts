@@ -11,6 +11,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 })
 export class UserService {
  
+ 
   pathvariable="";
   isfirstPathVariable=true;
 
@@ -79,5 +80,9 @@ this.isfirstPathVariable=false;
       bookId,
       reader
     }, httpOptions);
+  }
+
+  getSubscribedBooks(userid: string | undefined) {
+   return this.http.get(API_URL + 'readers/'+userid+'/books', { responseType: 'text' });
   }
 }

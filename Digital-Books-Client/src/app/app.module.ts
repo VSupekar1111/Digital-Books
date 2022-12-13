@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SearchbookComponent } from './searchbook/searchbook.component';
+import { SubscribedbooksComponent } from './subscribedbooks/subscribedbooks.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SearchbookComponent } from './searchbook/searchbook.component';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    SearchbookComponent
+    SearchbookComponent,
+    SubscribedbooksComponent
   ],
   imports: [
     BrowserModule,
