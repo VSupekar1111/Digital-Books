@@ -4,7 +4,7 @@
    width: 550px;
    padding-top: 30px;
    padding-bottom: 30px;
-   background-color: rgba(231, 226, 236, 0.555);
+   background-color: #f7f7f794;
    text-align: center;
    }
 
@@ -13,7 +13,7 @@
     width: 1000px;
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: rgba(231, 226, 236, 0.555);
+    background-color: rgba(231, 226, 236, 0.123);
     text-align: center;
     }
 
@@ -36,4 +36,14 @@
   width: 240px; 
   padding-left: 10px;
   padding-top:20px
+}
+img{
+  height: 150px;
+  width: 225px;
+}
+.error{
+  color: red;
+}
+.hedding{
+  color:#fff;
 }

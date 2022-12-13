@@ -71,6 +71,35 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+        type="text"
+        class="form-control"
+        name="phoneNumber"
+        [(ngModel)]="form.phoneNumber"
+      />
+      </div>
+      <div class="form-group">
+       <label for="role">Role</label>
+      <div class="role"> <input type="radio" value="author"
+        [(ngModel)]="form.role"
+          required
+          name="role"
+          #role="ngModel"
+          /> Author </div>
+      <div class="role"><input type="radio" value="reader"
+        [(ngModel)]="form.role"
+          required
+          name="role"
+          #role="ngModel"
+          /> Reader </div>
+        <div class="alert-danger" *ngIf="role.errors && f.submitted">
+          <div *ngIf="role.errors.required">Role is Required</div>
+          
+        </div>
+
+      </div>
+      <div class="form-group">
         <button class="btn btn-primary btn-block">Sign Up</button>
       </div>
 

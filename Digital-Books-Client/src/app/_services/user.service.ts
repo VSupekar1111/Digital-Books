@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs'; 
 
 const API_URL = 'http://localhost:8090/digitalbooks/';
+const TOKEN_HEADER_KEY = 'Authorization'; 
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+ 
   pathvariable="";
   isfirstPathVariable=true;
 
   constructor(private http: HttpClient) { }
+
+  
 
   getPublicContent(): Observable<any> {
     return this.http.get(API_URL + 'all', { responseType: 'text' });
@@ -32,6 +37,7 @@ export class UserService {
   getBooks(search :any): Observable<any> {
     console.log(search);
     this.pathvariable="";
+    this.isfirstPathVariable=true;
     if(search.category !="")
     {
       if(this.isfirstPathVariable)
@@ -79,5 +85,17 @@ this.isfirstPathVariable=false;
 }
  console.log("Path :"+ API_URL+'search'+this.pathvariable )
     return this.http.get(API_URL + 'search'+this.pathvariable, { responseType: 'text' });
+  }
+
+
+  subcribeBook(reader: string | undefined, bookId: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    };
+    let url=bookId+'/subscribe';
+    return this.http.post(API_URL+ url, {
+      bookId,
+      reader
+    }, httpOptions);
   }
 }
