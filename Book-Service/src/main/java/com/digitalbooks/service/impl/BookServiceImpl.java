@@ -114,7 +114,7 @@ public class BookServiceImpl implements BookService {
 			bookSubscribe.setActive(true);
 			BookSubscribe subscribeResponse = bookSubscribeRepository.save(bookSubscribe);
 			bookSubscribeResponse.setStatus("Success");
-			bookSubscribeResponse.setMessage("SubscribedId:"+subscribeResponse.getSubscribeId());
+			bookSubscribeResponse.setMessage(String.valueOf(subscribeResponse.getSubscribeId()));
 			System.out.println("Book Subscribe Response :" + bookSubscribeResponse);
 			return bookSubscribeResponse;
 		}
@@ -134,6 +134,26 @@ public class BookServiceImpl implements BookService {
 		bookSubscribeResponse.setMessage("Subscribed book list");
 		return bookSubscribeResponse;
 
+	}
+
+	@Override
+	public BookSubscribeResponse cancelSubscription(Long subscriptionId, Long readerId) {
+		System.out.println("Cancelling Subscription");
+		BookSubscribeResponse bookSubscribeResponse = new BookSubscribeResponse();
+		if (validationUtils.validateCancelsubscriptionRequest(subscriptionId, readerId,bookSubscribeResponse)) {
+			Optional<BookSubscribe> bookSubscribe =bookSubscribeRepository.findById(subscriptionId);
+			if(!bookSubscribe.isEmpty()) {
+				bookSubscribe.get().setActive(false);
+				bookSubscribeRepository.save(bookSubscribe.get());
+			}
+			bookSubscribeResponse.setStatus("Success");
+			bookSubscribeResponse.setMessage("UnSubscribeId:"+bookSubscribe.get().getSubscribeId());
+			System.out.println("Book Subscribe Response :" + bookSubscribeResponse);
+			return bookSubscribeResponse;
+		}
+		 
+		return bookSubscribeResponse;
+	
 	}
 
 }

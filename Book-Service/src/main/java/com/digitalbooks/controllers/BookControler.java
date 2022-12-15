@@ -72,4 +72,16 @@ public class BookControler {
 		}
 		return ResponseEntity.ok(bookSubscribeResponse);
 	}
+	
+	@PostMapping(value = "/readers/{reader-id}/books/{subscription-id}/cancel-subscription")
+	public ResponseEntity<?> cancelSubscription(@PathVariable("subscription-id") Long subscriptionId,
+			@PathVariable("reader-id") Long readerId) {
+		BookSubscribeResponse bookSubscribeResponse = null;
+		try {
+			bookSubscribeResponse = bookService.cancelSubscription(subscriptionId, readerId);
+		} catch (Exception e) {
+			System.out.println("Exception Occured: " + e.getMessage());
+		}
+		return ResponseEntity.ok(bookSubscribeResponse);
+	}
 }

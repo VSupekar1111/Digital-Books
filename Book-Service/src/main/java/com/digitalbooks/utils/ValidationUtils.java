@@ -1,5 +1,7 @@
 package com.digitalbooks.utils;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.digitalbooks.model.Book;
+import com.digitalbooks.model.BookSubscribe;
 import com.digitalbooks.repository.BookRepository;
 import com.digitalbooks.repository.BookSubscribeRepository;
 import com.digitalbooks.request.CreateBookRequest;
@@ -81,6 +84,26 @@ public class ValidationUtils {
 			}
 		}
 
+		return true;
+	}
+
+	public boolean validateCancelsubscriptionRequest(Long subscriptionId, Long readerId,BookSubscribeResponse bookSubscribeResponse) {
+		Optional<BookSubscribe> bookSubscribe = bookSubscribeRepository
+		.findBySubscriptionIdAndReader(subscriptionId,  readerId);
+		if (bookSubscribe.isEmpty()) {
+			bookSubscribeResponse.setStatus("Failure");
+			bookSubscribeResponse.setMessage("Reader Not Valid");
+			return false;
+		}else {
+			LocalDateTime subscribedDate=bookSubscribe.get().getSubscribeDate(); 
+			 Duration duration = Duration.between(subscribedDate, LocalDateTime.now());
+			 System.out.println("Cancel Subscription:"+duration.toHours() + " hours");
+			 if(duration.toHours() >=24) {
+			 bookSubscribeResponse.setStatus("Failure");
+			 bookSubscribeResponse.setMessage("Cancel Subscription Time Out");
+			return false;
+			 }
+		}
 		return true;
 	}
 

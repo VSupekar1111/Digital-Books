@@ -24,4 +24,6 @@ public interface BookService {
 
 	BookSubscribeResponse getBooks(Long userID) throws BookServiceException, BackeEndServiceException;
 
+	String callcancelSubscription(Long subscriptionId, Long readerId) throws BookServiceException, BackeEndServiceException;
+
 }

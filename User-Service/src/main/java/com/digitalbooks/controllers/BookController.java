@@ -65,5 +65,13 @@ public class BookController {
 
 		return ResponseEntity.ok(bookSubscribeResponse);
 	}
+	
+	@PostMapping(value = "/readers/{reader-id}/books/{subscription-id}/cancel-subscription")
+	@PreAuthorize("hasRole('READER')")
+	public ResponseEntity<?> cancelSubscription(@PathVariable("subscription-id") Long subscriptionId,@PathVariable("reader-id") Long readerId) throws BookServiceException, BackeEndServiceException
+			{
+		String response = bookService.callcancelSubscription(subscriptionId, readerId);
+	return ResponseEntity.ok(response);
+}
 
 }

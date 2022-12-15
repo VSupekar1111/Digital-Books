@@ -58,6 +58,9 @@ public class BookService implements com.digitalbooks.service.BookService {
 
 	@Value("${book-service.get-subscribed-book}")
 	String getSubscribedBookAPI;
+	
+	@Value("${book-service.cancel-subscribe}")
+	String cancelSubscribeAPI;
 
 	@Override
 	public BookServiceResponse callSearchBookAPI(Map<String, String> allFilter)
@@ -198,5 +201,32 @@ public class BookService implements com.digitalbooks.service.BookService {
 			throw new BackeEndServiceException("Backend Service Failure");
 		}
 		return bookSubscribeResponse;
+	}
+
+	@Override
+	public String callcancelSubscription(Long subscriptionId, Long readerId) throws BookServiceException, BackeEndServiceException {
+		System.out.println("Calling Cancel Subscribe API");
+		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
+				.path(cancelSubscribeAPI).buildAndExpand(readerId,subscriptionId);
+		System.out.println("Cancel Subscribe API URL: " + uri);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<?> entity = new HttpEntity<>(headers);
+
+		ResponseEntity<?> bookServicreResponseEntity = restTemplate.exchange(uri.toString(), HttpMethod.POST, entity,
+				BookSubscribeResponse.class);
+
+		BookSubscribeResponse bookSubscribeResponse = (BookSubscribeResponse) bookServicreResponseEntity.getBody();
+
+		if (bookSubscribeResponse != null) {
+			if (bookSubscribeResponse.getStatus() != null
+					&& bookSubscribeResponse.getStatus().toLowerCase().equals("failure"))
+				throw new BookServiceException(bookSubscribeResponse.getMessage());
+		} else {
+			throw new BackeEndServiceException("Backend Service Failure");
+		}
+
+		return bookSubscribeResponse.getMessage();
 	}
 }
