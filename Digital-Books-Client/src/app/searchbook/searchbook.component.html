@@ -1,5 +1,5 @@
 
-<div class="searchForm" *ngIf="!isSuccessful">
+<div class="card card-container" *ngIf="!isSuccessful">
     <h2>Search Book</h2>
 <div class="row" >
   <div class="fields">
@@ -41,7 +41,7 @@
       <input [(ngModel)]= "search.publisher">
     </div>
     </div>
-    <div class="fields" ><button class="btn btn-primary btn-block" (click)="searchBook()">
+     <div class="row fields" ><button class="btn btn-primary btn-block" (click)="searchBook()">
         Search
       </button>
     </div>
@@ -55,7 +55,7 @@
   </div>
 
 </div>
-<div class="books" *ngIf="isSuccessful">
+<div class="card-books card-container-books" *ngIf="isSuccessful">
   <h2 class="hedding">Search Result</h2>
   <div class="row"> 
     <div class="card card-block"

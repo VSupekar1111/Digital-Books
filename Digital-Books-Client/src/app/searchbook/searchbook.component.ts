@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-searchbook',
@@ -21,7 +22,7 @@ export class SearchbookComponent implements OnInit {
   errorMessage="";
   bookList?:Book[];
   content?: string;
-  constructor(private userService: UserService,private tokenStorageService: TokenStorageService) { }
+  constructor(private userService: UserService,private tokenStorageService: TokenStorageService,private router : Router) { }
   search={
     category:"",
     title:"",
@@ -44,9 +45,9 @@ export class SearchbookComponent implements OnInit {
       this.userid = user.id;
     }
 
-   //let data1='{"status":"Success","bookList":[{"id":1,"title":"Java Full Stack","category":"Programming Language","price":" 765","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"javafull.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":2,"title":"Java Core","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"javacore.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":3,"title":"Java","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"java.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":4,"title":"Angular","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"https://repository-images.githubusercontent.com/24195339/87018c00-694b-11e9-8b5f-c34826306d36","authorId":1,"authorName":"vikass","active":true,"createDate":null,"updateDate":null},{"id":5,"title":"Node JS","category":"Programming Language","price":"500","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"nodejs.png","authorId":1,"authorName":"vikass","active":true,"createDate":null,"updateDate":null}],"message":null}';
+  // let data1='{"status":"Success","bookList":[{"id":1,"title":"Java Full Stack","category":"Programming Language","price":" 765","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"javafull.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":2,"title":"Java Core","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"javacore.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":3,"title":"Java","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"java.png","authorId":10,"authorName":null,"active":true,"createDate":null,"updateDate":null},{"id":4,"title":"Angular","category":"Programming Language","price":" 450","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"https://repository-images.githubusercontent.com/24195339/87018c00-694b-11e9-8b5f-c34826306d36","authorId":1,"authorName":"vikass","active":true,"createDate":null,"updateDate":null},{"id":5,"title":"Node JS","category":"Programming Language","price":"500","publisher":"Moon publisher","publishDate":"2022-12-10","content":"","logo":"nodejs.png","authorId":1,"authorName":"vikass","active":true,"createDate":null,"updateDate":null}],"message":null}';
    // this.isSuccessful = true;
-   //this.bookList=JSON.parse(data1).bookList; 
+ //  this.bookList=JSON.parse(data1).bookList; 
   }
 
   searchBook(): void {
@@ -76,7 +77,7 @@ export class SearchbookComponent implements OnInit {
   data => {
     this.isSubscribeFailed=false;
     console.log(data);
-   
+    this.router.navigate(['/subscribedbooks']);
    },
   err => {
     this.isSubscribeFailed=true; 

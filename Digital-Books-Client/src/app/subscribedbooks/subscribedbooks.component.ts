@@ -43,6 +43,19 @@ export class SubscribedbooksComponent implements OnInit {
 
   unsubscribe(subscribeId: number):void{
 console.log("UnSubscribed Id:"+subscribeId);
+this.unsubscribedid=subscribeId;
+ this.userService.UnsubcribeBook(this.userid,subscribeId).subscribe(
+  data => {
+    this.isUnSubscribedFailed=false;
+    console.log(data);
+    window.location.reload();
+   },
+  err => {
+    this.isUnSubscribedFailed=true; 
+    this.errorMessage = err.error.errorMessage;
+    console.log(this.errorMessage);
+  }
+);
   }
 
 }

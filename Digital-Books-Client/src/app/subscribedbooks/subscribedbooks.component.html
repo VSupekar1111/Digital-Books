@@ -1,5 +1,5 @@
 
-<div class="books" *ngIf="!isSearchSubscribedFailed">
+<div class="card card-container" *ngIf="!isSearchSubscribedFailed">
     <h2 class="hedding">Subscribed Books</h2>
     <div class="row"> 
       <div class="card card-block"
@@ -11,13 +11,15 @@
      <p class="card-text"><b>Category </b>{{subscribedbook.book.category}}</p>
      <p class="card-text"><b>Author : </b>{{subscribedbook.book.authorName}}</p>
      <p class="card-text"><b>Price: </b>{{subscribedbook.book.price}}</p> 
-     <div > <button  class="btn btn-primary btn-block" (click)="unsubscribe(subscribedbook.book.id)">
+     <div > <button  class="btn btn-primary btn-block" (click)="unsubscribe(subscribedbook.subscribeId)">
       UnSubscribe
     </button></div>
-   
+    <div > <button  class="btn btn-primary btn-block" >
+      Read
+    </button></div>
      <div
       class="error"
       role="alert"
-      *ngIf="subscribedbook.book.id==unsubscribedid &&  isUnSubscribedFailed" >
+      *ngIf="subscribedbook.subscribeId==unsubscribedid &&  isUnSubscribedFailed" >
      Failed : {{ errorMessage }}
     </div>

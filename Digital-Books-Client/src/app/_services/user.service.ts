@@ -85,4 +85,16 @@ this.isfirstPathVariable=false;
   getSubscribedBooks(userid: string | undefined) {
    return this.http.get(API_URL + 'readers/'+userid+'/books', { responseType: 'text' });
   }
+
+  UnsubcribeBook(userid: string | undefined, subscribeId: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    };
+    let url='readers/'+userid+'/books/'+subscribeId+'/cancel-subscription';
+    console.log(API_URL+url);
+    return this.http.post(API_URL+ url, {
+    }, httpOptions);
+  }
+ 
+
 }
