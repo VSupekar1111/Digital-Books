@@ -12,7 +12,7 @@
         <a href="/createbook" class="nav-link" routerLink="createbook">CreateBook</a>
       </li>
       <li class="nav-item" *ngIf="showAuthorBoard">
-        <a href="/createbook" class="nav-link" routerLink="#">CreatedBooks</a>
+        <a href="/createdbooks" class="nav-link" routerLink="createdbooks">CreatedBooks</a>
       </li>
       <li class="nav-item" *ngIf="showReaderBoard">
         <a href="/subscribedbooks" class="nav-link" routerLink="subscribedbooks">SubscribedBooks</a>
@@ -43,7 +43,7 @@
   <div class="holder" *ngIf="!isLoggedIn">
     <div class="message"><b>Please Login to take any Action...!!</b></div>
   </div>
-  <div class="">
+  <div class="container">
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,0 +1,75 @@
+<div class="card card-container">
+    <h2>Search Book</h2>
+<div class="row" >
+  <div class="fields">
+     Title
+   </div>
+   <div class="fields">
+      <input [(ngModel)]= "book.title">
+   </div>
+   </div>
+   <div class="row" >
+    <div class="fields">
+       Category
+     </div>
+     <div class="fields">
+        <input [(ngModel)]= "book.category">
+     </div>
+     </div>
+    
+   <div class="row" >
+   <div class="fields">
+      Author
+    </div>
+    <div class="fields">
+        <input [(ngModel)]= "book.author" readonly="true">
+    </div>
+    </div>
+    <div class="row" >
+    <div class="fields">
+      Price
+    </div>
+    <div class="fields">
+      <input [(ngModel)]= "book.price">
+    </div>
+    </div>
+    <div class="row" >
+    <div class="fields">
+     Publisher
+    </div>
+    <div class="fields">
+      <input [(ngModel)]= "book.publisher">
+    </div>
+    </div>
+    <div class="row" >
+    <div class="fields">
+        Content
+       </div>
+       <div class="fields">
+         <input [(ngModel)]= "book.content">
+       </div>
+       </div>
+       <div class="row" >
+        <div class="fields">
+           Logo
+         </div>
+         <div class="fields">
+            <input type="file" >
+         </div>
+         </div>
+    
+     <div class="row fields" ><button class="btn btn-primary btn-block" (click)="createBook()">
+        Create
+      </button>
+    </div>
+ <div class="success" *ngIf="!isCreateBookFailed && message != ''">{{message}}</div>
+    <div
+    class="alert alert-danger"
+    role="alert"
+    *ngIf="isCreateBookFailed"
+  >
+   Failed: {{ errorMessage }}
+  </div>
+
+
+</div>s

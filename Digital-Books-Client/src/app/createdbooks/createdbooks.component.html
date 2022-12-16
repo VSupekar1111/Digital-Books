@@ -1,0 +1,29 @@
+
+<div class="card card-container" *ngIf="!isSearchSubscribedFailed">
+    <h2 class="hedding">Created Books</h2>
+    <div class="row"> 
+      <div class="card card-block"
+       *ngFor="let book of bookList">
+     
+       <div class="book">
+        <img src="path/{{book.logo}}">
+       <h4 class="card-title">{{book.title}}</h4>
+     <p class="card-text"><b>Category </b>{{book.category}}</p>
+     <p class="card-text"><b>Author : </b>{{book.authorName}}</p>
+     <p class="card-text"><b>Price: </b>{{book.price}}</p> 
+     <div *ngIf="book.active=='true'"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
+      Block
+    </button></div>
+    <div *ngIf="book.active=='false'"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
+        UnBlock
+      </button></div>
+    <div > <button  class="btn btn-primary btn-block" >
+      Edit
+    </button></div>
+     <div
+      class="error"
+      role="alert"
+      *ngIf="book.id==id &&  isFailed" >
+     Failed : {{ errorMessage }}
+    </div>
+

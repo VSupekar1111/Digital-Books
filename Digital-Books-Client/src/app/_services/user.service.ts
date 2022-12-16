@@ -12,6 +12,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 export class UserService {
  
  
+ 
   pathvariable="";
   isfirstPathVariable=true;
 
@@ -85,6 +86,9 @@ this.isfirstPathVariable=false;
   getSubscribedBooks(userid: string | undefined) {
    return this.http.get(API_URL + 'readers/'+userid+'/books', { responseType: 'text' });
   }
+  //getAuthorBooks(userid: string | undefined) {
+    //return this.http.get(API_URL + 'author/'+userid+'/books', { responseType: 'text' });
+ // }
 
   UnsubcribeBook(userid: string | undefined, subscribeId: number) {
     const httpOptions = {
@@ -96,5 +100,25 @@ this.isfirstPathVariable=false;
     }, httpOptions);
   }
  
+  createBook(userid:number,title: string, category: string, author: string, price: string, publisher: string, content: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    };
+    let url='author/'+userid+'/books';
+    console.log(API_URL+url);
+    return this.http.post(API_URL+ url, {
+      title,
+      category,
+      author,
+      price,
+      publisher,
+      content
+    }, httpOptions);
+  }
+
+  getAuthorBooks(userid: string | undefined) {
+    console.log("API:"+API_URL + 'author/'+userid+'/books');
+    return this.http.get(API_URL + 'author/'+userid+'/books', { responseType: 'text' });
+  }
 
 }
