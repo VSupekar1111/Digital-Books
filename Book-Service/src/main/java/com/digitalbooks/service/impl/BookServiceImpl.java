@@ -3,6 +3,7 @@ package com.digitalbooks.service.impl;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -46,13 +47,15 @@ public class BookServiceImpl implements BookService {
 			book.setCategory(createBookRequest.getCategory());
 			book.setContent(createBookRequest.getContent());
 			book.setPublisher(createBookRequest.getPublisher());
-			book.setPublishDate(LocalDate.parse(createBookRequest.getPublishDate()));
+			book.setPublishDate(LocalDate.now());
 			book.setAuthorId(authorID);
 			book.setActive(createBookRequest.isActive());
+			book.setCreateDate(LocalDate.now());
+			book.setUpdateDate(new Date());
 			Book bookResponse = bookRepository.save(book);
 			System.out.println("Book created : " + bookResponse);
 			bookServiceResponse.setStatus("Success");
-			bookServiceResponse.setMessage("id:"+bookResponse.getId());
+			bookServiceResponse.setMessage(String.valueOf(bookResponse.getId()));
 			return bookServiceResponse;
 		}
 		return bookServiceResponse;
@@ -140,20 +143,30 @@ public class BookServiceImpl implements BookService {
 	public BookSubscribeResponse cancelSubscription(Long subscriptionId, Long readerId) {
 		System.out.println("Cancelling Subscription");
 		BookSubscribeResponse bookSubscribeResponse = new BookSubscribeResponse();
-		if (validationUtils.validateCancelsubscriptionRequest(subscriptionId, readerId,bookSubscribeResponse)) {
-			Optional<BookSubscribe> bookSubscribe =bookSubscribeRepository.findById(subscriptionId);
-			if(!bookSubscribe.isEmpty()) {
+		if (validationUtils.validateCancelsubscriptionRequest(subscriptionId, readerId, bookSubscribeResponse)) {
+			Optional<BookSubscribe> bookSubscribe = bookSubscribeRepository.findById(subscriptionId);
+			if (!bookSubscribe.isEmpty()) {
 				bookSubscribe.get().setActive(false);
 				bookSubscribeRepository.save(bookSubscribe.get());
 			}
 			bookSubscribeResponse.setStatus("Success");
-			bookSubscribeResponse.setMessage("UnSubscribeId:"+bookSubscribe.get().getSubscribeId());
+			bookSubscribeResponse.setMessage("UnSubscribeId:" + bookSubscribe.get().getSubscribeId());
 			System.out.println("Book Subscribe Response :" + bookSubscribeResponse);
 			return bookSubscribeResponse;
 		}
-		 
+
 		return bookSubscribeResponse;
-	
+
+	}
+
+	@Override
+	public BookServiceResponse getAuthorBooks(Long userID) {
+		System.out.println("Fetching Subscribeed books");
+		BookServiceResponse bookServiceResponse = new BookServiceResponse();
+		List<Book> bookList=bookRepository.findAllByAuthorId(userID);
+		bookServiceResponse.setStatus("Success");
+		bookServiceResponse.setBookList(bookList);
+		return bookServiceResponse;
 	}
 
 }

@@ -23,7 +23,7 @@ public class Book {
 
 	String category;
 
-	String price;
+	double price;
 
 	String publisher;
 
@@ -58,12 +58,30 @@ public class Book {
 		this.category = category;
 	}
 
-	public String getPrice() {
+	 
+
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDate createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public String getPublisher() {

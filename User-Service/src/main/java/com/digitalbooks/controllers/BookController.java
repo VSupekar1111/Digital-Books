@@ -37,17 +37,18 @@ public class BookController {
 	BookService bookService;
 
 	@GetMapping("/search")
-	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter) throws BookServiceException, BackeEndServiceException {
-		 BookServiceResponse bookServiceResponse=bookService.callSearchBookAPI(allFilter);
-		 return ResponseEntity.ok(bookServiceResponse);
-		 }
+	public ResponseEntity<?> searchBook(@RequestParam Map<String, String> allFilter)
+			throws BookServiceException, BackeEndServiceException {
+		BookServiceResponse bookServiceResponse = bookService.callSearchBookAPI(allFilter);
+		return ResponseEntity.ok(bookServiceResponse);
+	}
 
-	@PostMapping(value = "/author/{author-id}/books", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/author/{author-id}/books")
 	@PreAuthorize("hasRole('AUTHOR')")
-	public ResponseEntity<?> createBook(@Valid @ModelAttribute CreateBookRequest createBookRequest,
-			@RequestParam("file") MultipartFile file, @PathVariable("author-id") String authorID) throws BackeEndServiceException, BookServiceException {
-		 String response=bookService.callCreateBookAPI(createBookRequest, authorID, file);
-		 return new ResponseEntity<>(response,HttpStatus.CREATED);
+	public ResponseEntity<?> createBook(@Valid @RequestBody CreateBookRequest createBookRequest,
+			@PathVariable("author-id") String authorID) throws BackeEndServiceException, BookServiceException {
+		String response = bookService.callCreateBookAPI(createBookRequest, authorID, null);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
 	@PostMapping(value = "/{book-id}/subscribe")
@@ -60,18 +61,28 @@ public class BookController {
 
 	@GetMapping(value = "/readers/{user-id}/books")
 	@PreAuthorize("hasRole('READER')")
-	public ResponseEntity<?> getBooks(@PathVariable("user-id") Long userID) throws BookServiceException, BackeEndServiceException {
+	public ResponseEntity<?> getBooks(@PathVariable("user-id") Long userID)
+			throws BookServiceException, BackeEndServiceException {
 		BookSubscribeResponse bookSubscribeResponse = bookService.getBooks(userID);
 
 		return ResponseEntity.ok(bookSubscribeResponse);
 	}
-	
+
 	@PostMapping(value = "/readers/{reader-id}/books/{subscription-id}/cancel-subscription")
 	@PreAuthorize("hasRole('READER')")
-	public ResponseEntity<?> cancelSubscription(@PathVariable("subscription-id") Long subscriptionId,@PathVariable("reader-id") Long readerId) throws BookServiceException, BackeEndServiceException
-			{
+	public ResponseEntity<?> cancelSubscription(@PathVariable("subscription-id") Long subscriptionId,
+			@PathVariable("reader-id") Long readerId) throws BookServiceException, BackeEndServiceException {
 		String response = bookService.callcancelSubscription(subscriptionId, readerId);
-	return ResponseEntity.ok(response);
-}
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "/author/{user-id}/books")
+	@PreAuthorize("hasRole('AUTHOR')")
+	public ResponseEntity<?> getAuthorBooks(@PathVariable("user-id") Long userID)
+			throws BookServiceException, BackeEndServiceException {
+		BookServiceResponse bookServiceResponse = bookService.getAuthorBooks(userID);
+
+		return ResponseEntity.ok(bookServiceResponse);
+	}
 
 }

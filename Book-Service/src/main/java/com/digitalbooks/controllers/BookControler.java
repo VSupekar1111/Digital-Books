@@ -84,4 +84,15 @@ public class BookControler {
 		}
 		return ResponseEntity.ok(bookSubscribeResponse);
 	}
+	
+	@GetMapping(value = "/author/{user-id}/books")
+	public ResponseEntity<?> getAuthorBooks(@PathVariable("user-id") Long userID) {
+		BookServiceResponse bookServiceResponse = null;
+		try { 
+			bookServiceResponse = bookService.getAuthorBooks(userID);
+		} catch (Exception e) {
+			System.out.println("Exception Occured: " + e.getMessage());
+		}
+		return ResponseEntity.ok(bookServiceResponse);
+	}
 }

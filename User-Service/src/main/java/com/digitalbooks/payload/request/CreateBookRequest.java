@@ -17,7 +17,7 @@ public class CreateBookRequest {
 	@NotBlank(message = "'category' must not be BLANK")
 	String category;
 
-	@NotBlank(message = "'price' must not be BLANK")
+	
 	String price;
 
 	@NotBlank(message = "'author' must not be BLANK")
@@ -25,9 +25,6 @@ public class CreateBookRequest {
 
 	@NotBlank(message = "'publisher' must not be BLANK")
 	String publisher;
-
-	@NotBlank(message = "'publishDate' must not be BLANK")
-	String publishDate;
 
 	@NotBlank(message = "'content' must not be BLANK")
 	String content;
@@ -58,6 +55,7 @@ public class CreateBookRequest {
 		this.category = category;
 	}
 
+
 	public String getPrice() {
 		return price;
 	}
@@ -82,13 +80,6 @@ public class CreateBookRequest {
 		this.publisher = publisher;
 	}
 
-	public String getPublishDate() {
-		return publishDate;
-	}
-
-	public void setPublishDate(String publishDate) {
-		this.publishDate = publishDate;
-	}
 
 	public String getContent() {
 		return content;
@@ -106,10 +97,6 @@ public class CreateBookRequest {
 		this.active = active;
 	}
 	
-	public  static File multipartToFile(MultipartFile multipart, String fileName) throws IllegalStateException, IOException {
-    File convFile = new File(System.getProperty("java.io.tmpdir")+"/"+fileName);
-    multipart.transferTo(convFile);
-    return convFile;
-}
+	
 
 }

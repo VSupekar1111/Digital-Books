@@ -61,6 +61,9 @@ public class BookService implements com.digitalbooks.service.BookService {
 	
 	@Value("${book-service.cancel-subscribe}")
 	String cancelSubscribeAPI;
+	
+	@Value("${book-service.get-created-books}")
+	String getCreatededBookAPI; 
 
 	@Override
 	public BookServiceResponse callSearchBookAPI(Map<String, String> allFilter)
@@ -141,7 +144,9 @@ public class BookService implements com.digitalbooks.service.BookService {
 	}
 
 	private void prepareRequest(@Valid CreateBookRequest createBookRequest, MultipartFile file) {
+		if(file != null) {
 		createBookRequest.setLogo(file.getOriginalFilename());
+		}
 	}
 
 	@Override
@@ -228,5 +233,36 @@ public class BookService implements com.digitalbooks.service.BookService {
 		}
 
 		return bookSubscribeResponse.getMessage();
+	}
+
+	@Override
+	public BookServiceResponse getAuthorBooks(Long userID) throws BackeEndServiceException, BookServiceException {
+		System.out.println("Calling get Created Book API");
+		UriComponents uri = UriComponentsBuilder.newInstance().scheme(httpSchema).host(bookServiceHost)
+				.path(getCreatededBookAPI).buildAndExpand(userID);
+		System.out.println("get created Book API URL: " + uri);
+
+		ResponseEntity<?> bookServicreResponseEntity = restTemplate.getForEntity(uri.toString(),
+				BookServiceResponse.class);
+		BookServiceResponse bookServiceResponse = (BookServiceResponse) bookServicreResponseEntity.getBody();
+
+		if (bookServiceResponse != null) {
+			if (bookServiceResponse.getStatus() != null
+					&& bookServiceResponse.getStatus().toLowerCase().equals("failure"))
+				throw new BookServiceException(bookServiceResponse.getMessage());
+			else if (bookServiceResponse.getBookList().size() > 0) {
+				List<Book> bookResponseList = bookServiceResponse.getBookList()
+						.stream().map(book -> {
+							Optional<User> user = userRepository.findById(book.getAuthorId());
+							if (!user.isEmpty())
+								book.setAuthorName(user.get().getusername());
+							return book;
+						}).collect(Collectors.toList());
+				bookServiceResponse.setBookList(bookResponseList);
+			}
+		} else {
+			throw new BackeEndServiceException("Backend Service Failure");
+		}
+		return bookServiceResponse;
 	}
 }

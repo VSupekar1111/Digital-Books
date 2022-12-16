@@ -9,13 +9,11 @@ public class CreateBookRequest {
 
 	String category;
 
-	String price;
+	double price;
 
 	String author;
 
 	String publisher;
-
-	String publishDate;
 
 	String content;
 
@@ -37,11 +35,12 @@ public class CreateBookRequest {
 		this.category = category;
 	}
 
-	public String getPrice() {
+	 
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -61,14 +60,7 @@ public class CreateBookRequest {
 		this.publisher = publisher;
 	}
 
-	public String getPublishDate() {
-		return publishDate;
-	}
-
-	public void setPublishDate(String publishDate) {
-		this.publishDate = publishDate;
-	}
-
+ 
 	public String getContent() {
 		return content;
 	}

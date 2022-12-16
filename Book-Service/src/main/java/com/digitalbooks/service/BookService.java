@@ -19,4 +19,6 @@ public interface BookService {
 
 	BookSubscribeResponse cancelSubscription(Long subscriptionId, Long readerId);
 
+	BookServiceResponse getAuthorBooks(Long userID);
+
 }
