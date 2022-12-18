@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
@@ -18,7 +19,7 @@ export class SubscribedbooksComponent implements OnInit {
   errorMessage="";
   subscribedBookList?:SubscribedBook[];
   content?: string;
-  constructor(private userService: UserService,private tokenStorageService: TokenStorageService) { }
+  constructor(private userService: UserService,private tokenStorageService: TokenStorageService,private router: Router) { }
   
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ this.unsubscribedid=subscribeId;
   data => {
     this.isUnSubscribedFailed=false;
     console.log(data);
-    window.location.reload();
+    this.router.navigate(['/subscribedbooks']);
    },
   err => {
     this.isUnSubscribedFailed=true; 

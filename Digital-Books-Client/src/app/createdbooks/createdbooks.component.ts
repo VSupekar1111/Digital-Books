@@ -55,5 +55,5 @@ export interface Book{
   publisher:string;
   logo:string;
   authorName:string;
-  active:string;
+  active:boolean;
 }

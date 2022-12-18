@@ -11,15 +11,16 @@
      <p class="card-text"><b>Category </b>{{book.category}}</p>
      <p class="card-text"><b>Author : </b>{{book.authorName}}</p>
      <p class="card-text"><b>Price: </b>{{book.price}}</p> 
-     <div *ngIf="book.active=='true'"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
+ <div *ngIf="book.active"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
       Block
     </button></div>
-    <div *ngIf="book.active=='false'"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
+    <div *ngIf="!book.active"> <button  class="btn btn-primary btn-block" (click)="blocUnblock()">
         UnBlock
       </button></div>
-    <div > <button  class="btn btn-primary btn-block" >
+   <button  class="btn btn-primary btn-block" >
       Edit
     </button></div>
+    
      <div
       class="error"
       role="alert"

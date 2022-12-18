@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs'; 
 
-const API_URL = 'http://localhost:8090/digitalbooks/';
+const API_URL = 'https://mon4fn2fmc.execute-api.ap-northeast-1.amazonaws.com/dev/';
 const TOKEN_HEADER_KEY = 'Authorization'; 
 
 
@@ -10,7 +10,6 @@ const TOKEN_HEADER_KEY = 'Authorization';
   providedIn: 'root'
 })
 export class UserService {
- 
  
  
   pathvariable="";
@@ -67,14 +66,18 @@ if(search.publisher !="")
 this.pathvariable +='publisher='+search.publisher;
 this.isfirstPathVariable=false;
 }
+
  console.log("Path :"+ API_URL+'search'+this.pathvariable )
+ const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Origin':'*'})
+};
     return this.http.get(API_URL + 'search'+this.pathvariable, { responseType: 'text' });
   }
 
 
   subcribeBook(reader: string | undefined, bookId: number) {
     const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',})
     };
     let url=bookId+'/subscribe';
     return this.http.post(API_URL+ url, {
